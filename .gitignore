@@ -1,0 +1,6 @@
+# Local verification artifacts (screenshots)
+.playwright-mcp/
+
+# Editor/OS
+.DS_Store
+Thumbs.db

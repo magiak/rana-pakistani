@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RANA · Pakistani Restaurant Prague — The true taste of Pakistan</title>
+<meta name="description" content="RANA Pakistani Restaurant in Prague 8 — traditional recipes, the very best ingredients and a warm welcome. Karahi, biryani, kebabs and more. Reserve a table or order on Wolt.">
+<meta name="theme-color" content="#7C2D18">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23A23B22'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23F6EFE2'%3ER%3C/text%3E%3C/svg%3E">
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="RANA · Pakistani Restaurant Prague">
+<meta property="og:description" content="The true taste of Pakistan in the heart of Prague — traditional recipes and a warm welcome for over 20 years.">
+<meta property="og:url" content="https://rana.lukaskmoch.cz/">
+<meta property="og:image" content="https://rana.lukaskmoch.cz/images/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#F6EFE2;--cream2:#EEE3CF;--paper:#FBF6EC;--ink:#241B14;--muted:#6E5F4F;--clay:#A23B22;--clay2:#7C2D18;--gold:#BE8A2C;--line:#DECDB0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+a{color:var(--clay);text-decoration:none}
+a:hover{color:var(--clay2)}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.05;letter-spacing:-.01em}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+.serif{font-family:'Cormorant Garamond',serif}
+.label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--clay)}
+.muted{color:var(--muted)}
+.arch{border-radius:999px 999px 14px 14px;overflow:hidden}
+.slot{position:relative;width:100%;height:100%}
+.slot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(246,239,226,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;letter-spacing:.02em;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brand b{color:var(--clay);font-weight:700}
+.dot{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:inline-block}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:var(--ink);font-size:14.5px;font-weight:500}
+.nav a:hover{color:var(--clay)}
+.hact{display:flex;align-items:center;gap:22px}
+.tel{font-weight:700;font-size:14.5px;color:var(--ink);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--clay);color:#fff;padding:12px 22px;border-radius:2px;font-weight:700;font-size:14px;letter-spacing:.02em;border:1px solid var(--clay);cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--clay2);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--cream)}
+.btn.gold{background:#111;border-color:#111}
+.btn.gold:hover{background:#000}
+/* hero */
+.hero{position:relative;height:88vh;min-height:620px;max-height:860px}
+.hero .bg{position:absolute;inset:0}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,9,.36) 0%,rgba(20,14,9,.12) 40%,rgba(20,14,9,.62) 100%);pointer-events:none}
+.hero .inner{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:74px;pointer-events:none}
+.hero .label{color:#F2D9A8}
+.hero h1{color:var(--paper);font-size:84px;font-weight:600;max-width:14ch;margin:14px 0 0;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero p{color:#F1E7D6;font-size:19px;max-width:46ch;margin-top:16px;text-shadow:0 1px 16px rgba(0,0,0,.4)}
+.hero .cta{display:flex;gap:14px;margin-top:30px;pointer-events:auto;flex-wrap:wrap}
+.badge{position:absolute;top:40px;right:40px;z-index:3;width:132px;height:132px;border-radius:50%;background:var(--paper);color:var(--clay2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.28);border:2px solid var(--gold)}
+.badge b{font-family:'Cormorant Garamond',serif;font-size:44px;line-height:.9;font-weight:700}
+.badge span{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-top:4px}
+/* ornament */
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold)}
+.orn i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);display:block}
+.orn .line{width:60px;height:1px;background:var(--line)}
+/* welcome */
+.sec{padding:110px 0}
+.welcome .grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.welcome h2{font-size:52px;margin:16px 0 22px}
+.welcome p{font-size:17px;color:var(--muted);margin-bottom:16px;max-width:46ch}
+.welcome .imgwrap{height:560px}
+.sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--clay);margin-top:10px}
+/* menu */
+.menu{background:var(--clay2);color:var(--paper)}
+.menu .label{color:#E6C079}
+.menu h2{color:var(--paper);font-size:52px;text-align:center;margin:14px 0 8px}
+.menu .lead{text-align:center;color:#E9D9BE;max-width:52ch;margin:0 auto 60px;font-size:16.5px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.dish{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.dish .ph{height:190px}
+.dish .body{padding:22px 24px 26px}
+.dish .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.dish h3{color:var(--paper);font-size:25px;font-weight:600}
+.dish .price{font-family:'Cormorant Garamond',serif;font-size:23px;color:#E6C079;font-weight:600;white-space:nowrap}
+.dish p{color:#D8C6A8;font-size:14.5px;margin-top:6px;line-height:1.5}
+.tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#E6C079;border:1px solid rgba(230,192,121,.4);padding:4px 10px;border-radius:2px}
+.menu .foot{text-align:center;margin-top:56px}
+/* wolt band */
+.wolt{background:var(--ink);color:var(--paper)}
+.wolt .wrap{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:64px 40px}
+.wolt h2{color:var(--paper);font-size:44px;max-width:16ch}
+.wolt p{color:#C9BCA9;margin-top:10px;font-size:16px;max-width:40ch}
+/* gallery */
+.gal h2{font-size:52px;text-align:center;margin:14px 0 54px}
+.ggrid{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:22px}
+.ggrid>div{height:420px}
+.ggrid>div:nth-child(2){height:470px;align-self:center}
+/* visit */
+.visit{background:var(--cream2)}
+.visit .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start}
+.visit h2{font-size:52px;margin:14px 0 28px}
+.info{display:flex;flex-direction:column;gap:26px;margin-top:8px}
+.info .row{display:flex;gap:16px}
+.info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--clay);width:118px;flex-shrink:0;padding-top:3px}
+.info .v{font-size:16.5px;line-height:1.5}
+.hours{display:flex;flex-direction:column;gap:8px}
+.hours .hr{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:6px 0;max-width:280px}
+.hours .hr b{font-weight:700}
+.mapwrap{height:520px;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.resvcard{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:36px 34px;box-shadow:0 20px 50px rgba(60,40,20,.08)}
+.resvcard h3{font-size:34px;margin-bottom:8px}
+.resvcard .big{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--clay2);font-weight:700;margin:18px 0 4px}
+/* footer */
+.ft{background:var(--ink);color:#C9BCA9;padding:56px 0 34px}
+.ft .wrap{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ft .brand{color:var(--paper)}
+.ft a{color:#C9BCA9}
+.ft a:hover{color:var(--paper)}
+.ft .cols{display:flex;gap:64px;flex-wrap:wrap}
+.ft .col h4{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#E6C079;margin-bottom:14px;font-family:'DM Sans',sans-serif;font-weight:700}
+.ft .col a,.ft .col p{display:block;font-size:15px;margin-bottom:8px}
+.ft .bar{border-top:1px solid rgba(255,255,255,.1);margin-top:44px;padding-top:22px;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:900px){
+.wrap{padding:0 22px}
+.nav,.tel{display:none}
+.welcome .grid,.visit .grid{grid-template-columns:1fr;gap:40px}
+.welcome .imgwrap{height:400px}
+.mgrid{grid-template-columns:1fr}
+.ggrid{grid-template-columns:1fr}
+.ggrid>div,.ggrid>div:nth-child(2){height:300px;align-self:auto}
+.wolt .wrap{flex-direction:column;align-items:flex-start;text-align:left}
+.sec{padding:70px 0}
+.hero h1{font-size:44px}
+.badge{width:104px;height:104px;top:22px;right:22px}
+.badge b{font-size:34px}
+}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> <span class="serif" style="font-weight:500;font-size:15px;letter-spacing:.06em;color:var(--muted)">Pakistani</span></a><nav class="nav"><a href="#menu">Menu</a><a href="#lunch">Lunch</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a></nav><div class="hact"><a href="tel:+420721809084" class="tel">+420 721 809 084</a><a href="#visit" class="btn">Reserve</a></div></div></header>
+
+<section id="top" class="hero"><div class="bg"><div class="slot"><img src="images/hero.jpg" alt="Chicken biryani served with a rich curry at RANA Pakistani Restaurant in Prague"></div></div><div class="scrim"></div><div class="badge"><b>20</b><span>Years</span></div><div class="wrap inner"><span class="label">Prague · Since 2003</span><h1 class="serif">The true taste of Pakistan</h1><p>Traditional recipes, the very best ingredients, and a table set for you — as it has been for over twenty years.</p><div class="cta"><a href="#visit" class="btn">Reserve a table</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold">Order on Wolt →</a></div></div></section>
+
+<section id="story" class="sec welcome"><div class="wrap"><div class="grid"><div><span class="label">Welcome to our home</span><h2 class="serif">We cook for you.<br>For over 20 years.</h2><p>We wish you a warm welcome into our home. If you'd like to taste and enjoy our authentic Pakistani cuisine, we would love to see you.</p><p>Give us a ring to book ahead — especially in the evening, as we often entertain a full house of guests. Come hungry; leave as family.</p><div class="orn" style="justify-content:flex-start;margin-top:24px"><i></i><span class="line"></span></div><p class="sign">— The Rana family</p></div><div class="imgwrap arch"><div class="slot"><img src="images/story.jpg" alt="A traditional Pakistani thali with an assortment of curries, rice and chutneys"></div></div></div></div></section>
+
+<section id="menu" class="sec menu"><div class="wrap"><div class="orn"><span class="line"></span><i></i><span class="line"></span></div><span class="label" style="display:block;text-align:center;margin-top:22px">Savour the specialties</span><h2 class="serif">Taste our RANA menu</h2><p class="lead">Sit down and select from a carefully chosen menu of real, authentic Pakistani cuisine. We believe you'll leave satisfied — and come back soon.</p><div class="mgrid"><div class="dish"><div class="ph"><div class="slot"><img src="images/butter.jpg" alt="Murgh Butter — Pakistani butter chicken curry"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Butter</h3><span class="price">250 Kč</span></div><p>Tandoor-cooked chicken folded into a silky tomato, butter and cream sauce.</p><span class="tag">House favourite</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/roganjosh.jpg" alt="Rogan Josh — slow-cooked lamb curry"></div></div><div class="body"><div class="top"><h3 class="serif">Rogan Josh</h3><span class="price">250 Kč</span></div><p>Tender lamb braised in an aromatic gravy of Kashmiri chillies and warm spices.</p><span class="tag">Slow-cooked</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/biryani.jpg" alt="Murgh Biryani — chicken biryani with fragrant basmati rice"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Biryani</h3><span class="price">285 Kč</span></div><p>Fragrant basmati layered with spiced chicken, saffron and crisp fried onion.</p><span class="tag">Classic</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/seekh.jpg" alt="Seekh Kebab — charcoal-grilled minced lamb skewers"></div></div><div class="body"><div class="top"><h3 class="serif">Seekh Kebab</h3><span class="price">150 Kč</span></div><p>Charcoal-grilled minced lamb skewers with fresh herbs, served with mint chutney.</p><span class="tag">From the grill</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/palakpaneer.jpg" alt="Palak Paneer — fresh spinach with homemade paneer"></div></div><div class="body"><div class="top"><h3 class="serif">Palak Paneer</h3><span class="price">225 Kč</span></div><p>Fresh spinach slow-cooked with homemade paneer and gently warming spices.</p><span class="tag">Vegetarian</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/garlicnaan.jpg" alt="Garlic Naan — tandoor-baked flatbread"></div></div><div class="body"><div class="top"><h3 class="serif">Garlic Naan</h3><span class="price">65 Kč</span></div><p>Tandoor-baked flatbread brushed with garlic butter and fresh coriander.</p><span class="tag">From the tandoor</span></div></div></div><div class="foot"><a id="lunch" href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn ghost" style="border-color:#E6C079;color:#E6C079">View the full menu &amp; lunch specials</a></div></div></section>
+
+<section id="drinks" class="wolt"><div class="wrap"><div><span class="label" style="color:#E6C079">Can't make it in?</span><h2 class="serif">We deliver across Prague on Wolt</h2><p>The same kitchen, brought to your door. Order your favourites in a few taps.</p></div><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold" style="background:#00C2E8;border-color:#00C2E8;color:#00323b;font-size:16px;padding:16px 30px">Order on Wolt →</a></div></section>
+
+<section class="sec gal"><div class="wrap"><div class="orn"><span class="line"></span><i></i><span class="line"></span></div><span class="label" style="display:block;text-align:center;margin-top:22px">Fresh from our kitchen</span><h2 class="serif">A closer look</h2><div class="ggrid"><div class="arch"><div class="slot"><img src="images/gal1.jpg" alt="A creamy Pakistani curry served with steamed rice"></div></div><div class="arch"><div class="slot"><img src="images/gal2.jpg" alt="A grilled tandoori platter with naan and chutney"></div></div><div class="arch"><div class="slot"><img src="images/gal3.jpg" alt="Saffron pulao rice with cashews, peas and mint"></div></div></div></div></section>
+
+<section id="visit" class="sec visit"><div class="wrap"><div class="grid"><div><span class="label">Find us · Reserve</span><h2 class="serif">Our restaurant</h2><div class="info"><div class="row"><div class="k">Address</div><div class="v"><b>Na Dědince 515/12</b><br>180 00 Praha 8<br><a href="https://maps.google.com/?q=50.11556176,14.47244222" target="_blank" rel="noopener">Open in Google Maps →</a></div></div><div class="row"><div class="k">Reservation</div><div class="v"><b><a href="tel:+420721809084">+420 721 809 084</a></b><br><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div><div class="row"><div class="k">Hours</div><div class="v"><div class="hours"><div class="hr"><span>Monday</span><b>11:30 – 16:00</b></div><div class="hr"><span>Tue – Fri</span><b>11:30 – 22:30</b></div><div class="hr"><span>Sat – Sun</span><b>12:00 – 22:30</b></div><div class="hr"><span>Kitchen closes</span><b>22:00</b></div></div></div></div><div class="row"><div class="k">Follow</div><div class="v"><a href="https://www.facebook.com/pages/P%C3%A1kist%C3%A1nsk%C3%A1-Restaurace-Rana-Wwwpakistanicz/512073632147219" target="_blank" rel="noopener">Facebook</a></div></div></div><div class="resvcard" style="margin-top:36px"><h3 class="serif">Book ahead</h3><p class="muted">Evenings fill quickly. Give us a ring and we'll set a table for you.</p><div class="big">+420 721 809 084</div><a href="tel:+420721809084" class="btn" style="margin-top:16px">Call to reserve</a></div></div><div class="mapwrap"><iframe title="Map to RANA Pakistani Restaurant" src="https://maps.google.com/maps?q=50.11556176,14.47244222&z=16&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe></div></div></div></section>
+
+<footer class="ft"><div class="wrap"><div><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> Pakistani</a><p style="margin-top:14px;max-width:32ch;font-size:15px">The true taste of Pakistan in the heart of Prague. We cook for you — for over 20 years.</p></div><div class="cols"><div class="col"><h4>Menu</h4><a href="#menu">Main menu</a><a href="#lunch">Lunch menu</a><a href="#drinks">Delivery</a></div><div class="col"><h4>Visit</h4><a href="#visit">Contact &amp; map</a><a href="#story">About us</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener">Order on Wolt</a></div><div class="col"><h4>Reserve</h4><p><a href="tel:+420721809084">+420 721 809 084</a></p><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div></div><div class="wrap"><div class="bar"><span>© 2026 RANA Pakistani Restaurant · Všechna práva vyhrazena</span><span>Prague, Czech Republic</span></div></div></footer>
+</body>
+</html>
