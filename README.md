@@ -26,8 +26,19 @@ Single-page static website:
 
 - HTML5 + CSS3 (custom properties, grid, flexbox) — no build step
 - Google Fonts (Cormorant Garamond + DM Sans, `latin-ext` for Czech diacritics)
-- Zero JavaScript — sticky header and smooth scrolling are pure CSS
+- One small self-contained vanilla-JS component: the **flip-book menu** (see below). The rest of the page (sticky header, smooth scrolling) is pure CSS.
 - Local images in `images/` (no external hotlinking)
+
+## Full menu (flip-book)
+
+Clicking **"Open the full menu & lunch specials"** (or *Menu* / *Lunch* in the nav) opens a book-style overlay with a real 3-D page-turn animation:
+
+- Two-page spread on desktop, single page on mobile (rebuilds on breakpoint change)
+- Category quick-nav tabs, prev/next arrows, click-to-turn, and keyboard control (← → / Esc)
+- Content auto-scales to each page so nothing overflows
+- Fully self-contained — no libraries, no external requests
+
+The menu content is transcribed from RANA's **own printed menu** (the scanned pages on `ranapakistani.cz/main-menu/`), the **2025 lunch menu** (`/lunch-menu/`) and the **drinks list** (`/drinks/`) — so all dishes, descriptions and prices are the restaurant's real **dine-in** figures.
 
 ## Hosting
 
@@ -54,7 +65,7 @@ Open `index.html` directly in a browser — no server or build step needed.
 
 This site was generated from a design concept, then populated with real data where available. A few items should be confirmed with the owner before it goes to the client:
 
-- **Menu dishes, descriptions and prices** are taken from RANA's public **Wolt** menu (e.g. Murgh Butter 250 Kč, Rogan Josh 250 Kč, Murgh Biryani 285 Kč, Seekh Kebab 150 Kč, Palak Paneer 225 Kč, Garlic Naan 65 Kč). Wolt/delivery prices can differ from the à-la-carte, dine-in prices — confirm the current figures.
+- **Menu dishes, descriptions and prices** (both the six featured cards and the full flip-book menu) are transcribed from RANA's own printed à-la-carte menu, plus the 2025 lunch menu and the drinks list on `ranapakistani.cz`. These are the **dine-in** prices; Wolt/delivery prices may differ. The printed menu is undated in places — confirm the current figures with the owner before pitching.
 - **"Since 2003 / 20 years"** comes from the original design concept and has **not** been independently verified. Confirm the founding year.
 - **`rezervace@ranapakistani.cz`** and the reservation-by-email flow come from the concept — confirm the address is live.
 - **All photos are the restaurant's own.** The hero, About and gallery images are RANA's own food photography taken from their existing website (`ranapakistani.cz`); the menu-card photos come from their **Wolt** listing. No stock imagery is used.

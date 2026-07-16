@@ -136,16 +136,89 @@ img{display:block;max-width:100%}
 .badge{width:104px;height:104px;top:22px;right:22px}
 .badge b{font-size:34px}
 }
+/* ============ MENU BOOK (flip-page menu) ============ */
+.mb-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(18,12,7,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.mb-overlay.open{display:flex}
+body.mb-lock{overflow:hidden}
+.mb-modal{position:relative;width:min(1080px,97vw);max-height:97vh;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mb-close{position:absolute;top:-2px;right:-2px;z-index:8;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(0,0,0,.28);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.mb-close:hover{background:var(--clay)}
+.mb-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:100%}
+.mb-tab{appearance:none;border:1px solid rgba(230,192,121,.45);background:rgba(255,255,255,.05);color:#F2E6CE;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.05em;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.18s}
+.mb-tab:hover{background:rgba(230,192,121,.2)}
+.mb-tab.active{background:var(--gold);border-color:var(--gold);color:#3a2410}
+.mb-stage{position:relative;display:flex;align-items:center;justify-content:center;width:100%}
+.mb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:7;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.32);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.mb-nav:hover{background:var(--clay)}
+.mb-nav[disabled]{opacity:.25;cursor:default}
+.mb-prev{left:-62px}.mb-next{right:-62px}
+.mb-foot{color:#E9D9BE;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;min-height:1em}
+/* book */
+.mb-book{position:relative;perspective:2400px;flex:none}
+.mb-book.is-spread{--pw:min(432px,43.5vw,55vh);width:calc(var(--pw)*2);height:calc(var(--pw)*1.4);background:var(--paper);border-radius:5px;box-shadow:0 34px 90px rgba(0,0,0,.55)}
+.mb-book.is-single{--pw:min(470px,90vw,64vh);width:var(--pw);height:calc(var(--pw)*1.4)}
+.mb-leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.28,.72,.24,1)}
+.mb-leaf.flipped{transform:rotateY(-179.9deg)}
+.mb-page{position:absolute;inset:0;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper);transition:transform .72s cubic-bezier(.28,.72,.24,1);border-radius:5px;box-shadow:0 26px 64px rgba(0,0,0,.5)}
+.mb-page.flipped{transform:rotateY(-179.9deg)}
+.mb-noanim .mb-leaf,.mb-noanim .mb-page{transition:none!important}
+.mb-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper)}
+.mb-back{transform:rotateY(180deg)}
+/* page surface */
+.mb-pg{position:absolute;inset:0;padding:4.6% 6%;background:radial-gradient(125% 85% at 100% 0,rgba(190,138,44,.07),transparent 62%),var(--paper)}
+.mb-fit{position:relative;height:100%;display:flex;flex-direction:column;transform-origin:top center}
+.mb-front .mb-pg{box-shadow:inset 16px 0 26px -18px rgba(60,40,20,.5)}
+.mb-back .mb-pg{box-shadow:inset -16px 0 26px -18px rgba(60,40,20,.5)}
+.mb-hd{text-align:center;margin-bottom:2.6%;flex:none}
+.mb-kick{font-size:9px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.mb-title{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--clay2);font-size:clamp(20px,4.4vw,27px);line-height:1.02;margin:2px 0 3px}
+.mb-sub{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mb-orn{color:var(--gold);margin-top:4px;font-size:8px;letter-spacing:.5em}
+.mb-list{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:1.6%}
+.mb-sh{display:flex;align-items:baseline;gap:9px;color:var(--clay);margin:.6% 0 -.6%}
+.mb-sh b{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;letter-spacing:.01em}
+.mb-sh i{font-style:normal;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mb-sh::after{content:"";flex:1;height:1px;background:var(--line)}
+.mb-drow{display:flex;align-items:baseline;gap:6px}
+.mb-nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(14px,2.1vw,17px);color:var(--ink);letter-spacing:.01em}
+.mb-leader{flex:1;border-bottom:1px dotted var(--line);position:relative;top:-3px;min-width:12px}
+.mb-unit{font-size:9px;color:var(--muted);white-space:nowrap}
+.mb-pr{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(13px,2vw,15.5px);color:#9c6f22;white-space:nowrap}
+.mb-desc{font-size:clamp(9.5px,1.4vw,11px);color:var(--muted);line-height:1.24;margin-top:0;max-width:95%}
+/* drinks */
+.mb-dcols{flex:1;min-height:0;display:flex;gap:7%}
+.mb-dcol{flex:1;display:flex;flex-direction:column;gap:6px}
+.mb-dblock{display:flex;flex-direction:column;gap:4px}
+.mb-drk{display:flex;align-items:baseline;gap:5px;font-size:10.8px}
+.mb-nm2{color:var(--ink);font-weight:500}
+.mb-sz{font-size:8.5px;color:var(--muted);white-space:nowrap}
+.mb-pr2{font-family:'Cormorant Garamond',serif;font-weight:700;color:#9c6f22;white-space:nowrap;font-size:11.5px}
+/* cover / back */
+.mb-cover,.mb-endc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9%;background:radial-gradient(135% 90% at 50% 0,#fff7e8,var(--paper) 72%)}
+.mb-crest{margin-bottom:4%}
+.mb-logo{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--clay);font-size:clamp(40px,10vw,70px);line-height:.86;letter-spacing:.05em}
+.mb-pk{font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:8px}
+.mb-mword{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,6vw,38px);color:var(--clay2);margin:8% 0 6%}
+.mb-cover .mb-meta,.mb-endc .mb-meta{font-size:11.5px;color:var(--muted);line-height:1.95}
+.mb-cover .mb-meta b{color:var(--ink)}
+.mb-rule{width:52px;height:1px;background:var(--gold);margin:14px 0}
+@media(max-width:840px){
+.mb-stage{margin-bottom:58px}
+.mb-nav{top:auto;bottom:-54px;transform:none;background:rgba(0,0,0,.4)}
+.mb-prev{left:calc(50% - 58px);right:auto}
+.mb-next{right:calc(50% - 58px);left:auto}
+.mb-tab{font-size:11px;padding:6px 10px}
+}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> <span class="serif" style="font-weight:500;font-size:15px;letter-spacing:.06em;color:var(--muted)">Pakistani</span></a><nav class="nav"><a href="#menu">Menu</a><a href="#lunch">Lunch</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a></nav><div class="hact"><a href="tel:+420721809084" class="tel">+420 721 809 084</a><a href="#visit" class="btn">Reserve</a></div></div></header>
+<header class="hdr"><div class="wrap"><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> <span class="serif" style="font-weight:500;font-size:15px;letter-spacing:.06em;color:var(--muted)">Pakistani</span></a><nav class="nav"><a href="#menu" data-menu="starters" class="js-menu">Menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a></nav><div class="hact"><a href="tel:+420721809084" class="tel">+420 721 809 084</a><a href="#visit" class="btn">Reserve</a></div></div></header>
 
 <section id="top" class="hero"><div class="bg"><div class="slot"><img src="images/hero.jpg" alt="A spread of RANA's Pakistani dishes — karahi curries, biryani, tandoori grill and fresh naan"></div></div><div class="scrim"></div><div class="badge"><b>20</b><span>Years</span></div><div class="wrap inner"><span class="label">Prague · Since 2003</span><h1 class="serif">The true taste of Pakistan</h1><p>Traditional recipes, the very best ingredients, and a table set for you — as it has been for over twenty years.</p><div class="cta"><a href="#visit" class="btn">Reserve a table</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold">Order on Wolt →</a></div></div></section>
 
 <section id="story" class="sec welcome"><div class="wrap"><div class="grid"><div><span class="label">Welcome to our home</span><h2 class="serif">We cook for you.<br>For over 20 years.</h2><p>We wish you a warm welcome into our home. If you'd like to taste and enjoy our authentic Pakistani cuisine, we would love to see you.</p><p>Give us a ring to book ahead — especially in the evening, as we often entertain a full house of guests. Come hungry; leave as family.</p><div class="orn" style="justify-content:flex-start;margin-top:24px"><i></i><span class="line"></span></div><p class="sign">— The Rana family</p></div><div class="imgwrap arch"><div class="slot"><img src="images/story.jpg" alt="Chicken karahi simmered with tomato, ginger and chilli in a traditional copper karahi"></div></div></div></div></section>
 
-<section id="menu" class="sec menu"><div class="wrap"><div class="orn"><span class="line"></span><i></i><span class="line"></span></div><span class="label" style="display:block;text-align:center;margin-top:22px">Savour the specialties</span><h2 class="serif">Taste our RANA menu</h2><p class="lead">Sit down and select from a carefully chosen menu of real, authentic Pakistani cuisine. We believe you'll leave satisfied — and come back soon.</p><div class="mgrid"><div class="dish"><div class="ph"><div class="slot"><img src="images/butter.jpg" alt="Murgh Butter — Pakistani butter chicken curry"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Butter</h3><span class="price">250 Kč</span></div><p>Tandoor-cooked chicken folded into a silky tomato, butter and cream sauce.</p><span class="tag">House favourite</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/roganjosh.jpg" alt="Rogan Josh — slow-cooked lamb curry"></div></div><div class="body"><div class="top"><h3 class="serif">Rogan Josh</h3><span class="price">250 Kč</span></div><p>Tender lamb braised in an aromatic gravy of Kashmiri chillies and warm spices.</p><span class="tag">Slow-cooked</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/biryani.jpg" alt="Murgh Biryani — chicken biryani with fragrant basmati rice"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Biryani</h3><span class="price">285 Kč</span></div><p>Fragrant basmati layered with spiced chicken, saffron and crisp fried onion.</p><span class="tag">Classic</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/seekh.jpg" alt="Seekh Kebab — charcoal-grilled minced lamb skewers"></div></div><div class="body"><div class="top"><h3 class="serif">Seekh Kebab</h3><span class="price">150 Kč</span></div><p>Charcoal-grilled minced lamb skewers with fresh herbs, served with mint chutney.</p><span class="tag">From the grill</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/palakpaneer.jpg" alt="Palak Paneer — fresh spinach with homemade paneer"></div></div><div class="body"><div class="top"><h3 class="serif">Palak Paneer</h3><span class="price">225 Kč</span></div><p>Fresh spinach slow-cooked with homemade paneer and gently warming spices.</p><span class="tag">Vegetarian</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/garlicnaan.jpg" alt="Garlic Naan — tandoor-baked flatbread"></div></div><div class="body"><div class="top"><h3 class="serif">Garlic Naan</h3><span class="price">65 Kč</span></div><p>Tandoor-baked flatbread brushed with garlic butter and fresh coriander.</p><span class="tag">From the tandoor</span></div></div></div><div class="foot"><a id="lunch" href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn ghost" style="border-color:#E6C079;color:#E6C079">View the full menu &amp; lunch specials</a></div></div></section>
+<section id="menu" class="sec menu"><div class="wrap"><div class="orn"><span class="line"></span><i></i><span class="line"></span></div><span class="label" style="display:block;text-align:center;margin-top:22px">Savour the specialties</span><h2 class="serif">Taste our RANA menu</h2><p class="lead">Sit down and select from a carefully chosen menu of real, authentic Pakistani cuisine. We believe you'll leave satisfied — and come back soon.</p><div class="mgrid"><div class="dish"><div class="ph"><div class="slot"><img src="images/butter.jpg" alt="Murgh Butter — Pakistani butter chicken curry"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Butter</h3><span class="price">230 Kč</span></div><p>Tandoor-cooked chicken folded into a silky tomato, butter and cream sauce.</p><span class="tag">House favourite</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/roganjosh.jpg" alt="Rogan Josh — slow-cooked lamb curry"></div></div><div class="body"><div class="top"><h3 class="serif">Rogan Josh</h3><span class="price">270 Kč</span></div><p>Tender lamb braised in an aromatic gravy of Kashmiri chillies and warm spices.</p><span class="tag">Slow-cooked</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/biryani.jpg" alt="Murgh Biryani — chicken biryani with fragrant basmati rice"></div></div><div class="body"><div class="top"><h3 class="serif">Murgh Biryani</h3><span class="price">265 Kč</span></div><p>Fragrant basmati layered with spiced chicken, saffron and crisp fried onion.</p><span class="tag">Classic</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/seekh.jpg" alt="Seekh Kebab — charcoal-grilled minced lamb skewers"></div></div><div class="body"><div class="top"><h3 class="serif">Seekh Kebab</h3><span class="price">130 Kč</span></div><p>Charcoal-grilled minced lamb skewers with fresh herbs, served with mint chutney.</p><span class="tag">From the grill</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/palakpaneer.jpg" alt="Palak Paneer — fresh spinach with homemade paneer"></div></div><div class="body"><div class="top"><h3 class="serif">Palak Paneer</h3><span class="price">205 Kč</span></div><p>Fresh spinach slow-cooked with homemade paneer and gently warming spices.</p><span class="tag">Vegetarian</span></div></div><div class="dish"><div class="ph"><div class="slot"><img src="images/garlicnaan.jpg" alt="Garlic Naan — tandoor-baked flatbread"></div></div><div class="body"><div class="top"><h3 class="serif">Garlic Naan</h3><span class="price">55 Kč</span></div><p>Tandoor-baked flatbread brushed with garlic butter and fresh coriander.</p><span class="tag">From the tandoor</span></div></div></div><div class="foot"><a id="lunch" href="#menu" data-menu="cover" class="btn ghost js-menu" style="border-color:#E6C079;color:#E6C079">Open the full menu &amp; lunch specials</a></div></div></section>
 
 <section id="drinks" class="wolt"><div class="wrap"><div><span class="label" style="color:#E6C079">Can't make it in?</span><h2 class="serif">We deliver across Prague on Wolt</h2><p>The same kitchen, brought to your door. Order your favourites in a few taps.</p></div><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold" style="background:#00C2E8;border-color:#00C2E8;color:#00323b;font-size:16px;padding:16px 30px">Order on Wolt →</a></div></section>
 
@@ -153,6 +226,464 @@ img{display:block;max-width:100%}
 
 <section id="visit" class="sec visit"><div class="wrap"><div class="grid"><div><span class="label">Find us · Reserve</span><h2 class="serif">Our restaurant</h2><div class="info"><div class="row"><div class="k">Address</div><div class="v"><b>Na Dědince 515/12</b><br>180 00 Praha 8<br><a href="https://maps.google.com/?q=50.11556176,14.47244222" target="_blank" rel="noopener">Open in Google Maps →</a></div></div><div class="row"><div class="k">Reservation</div><div class="v"><b><a href="tel:+420721809084">+420 721 809 084</a></b><br><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div><div class="row"><div class="k">Hours</div><div class="v"><div class="hours"><div class="hr"><span>Monday</span><b>11:30 – 16:00</b></div><div class="hr"><span>Tue – Fri</span><b>11:30 – 22:30</b></div><div class="hr"><span>Sat – Sun</span><b>12:00 – 22:30</b></div><div class="hr"><span>Kitchen closes</span><b>22:00</b></div></div></div></div><div class="row"><div class="k">Follow</div><div class="v"><a href="https://www.facebook.com/pages/P%C3%A1kist%C3%A1nsk%C3%A1-Restaurace-Rana-Wwwpakistanicz/512073632147219" target="_blank" rel="noopener">Facebook</a></div></div></div><div class="resvcard" style="margin-top:36px"><h3 class="serif">Book ahead</h3><p class="muted">Evenings fill quickly. Give us a ring and we'll set a table for you.</p><div class="big">+420 721 809 084</div><a href="tel:+420721809084" class="btn" style="margin-top:16px">Call to reserve</a></div></div><div class="mapwrap"><iframe title="Map to RANA Pakistani Restaurant" src="https://maps.google.com/maps?q=50.11556176,14.47244222&z=16&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe></div></div></div></section>
 
-<footer class="ft"><div class="wrap"><div><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> Pakistani</a><p style="margin-top:14px;max-width:32ch;font-size:15px">The true taste of Pakistan in the heart of Prague. We cook for you — for over 20 years.</p></div><div class="cols"><div class="col"><h4>Menu</h4><a href="#menu">Main menu</a><a href="#lunch">Lunch menu</a><a href="#drinks">Delivery</a></div><div class="col"><h4>Visit</h4><a href="#visit">Contact &amp; map</a><a href="#story">About us</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener">Order on Wolt</a></div><div class="col"><h4>Reserve</h4><p><a href="tel:+420721809084">+420 721 809 084</a></p><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div></div><div class="wrap"><div class="bar"><span>© 2026 RANA Pakistani Restaurant · Všechna práva vyhrazena</span><span>Prague, Czech Republic</span></div></div></footer>
+<footer class="ft"><div class="wrap"><div><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> Pakistani</a><p style="margin-top:14px;max-width:32ch;font-size:15px">The true taste of Pakistan in the heart of Prague. We cook for you — for over 20 years.</p></div><div class="cols"><div class="col"><h4>Menu</h4><a href="#menu" data-menu="starters" class="js-menu">Main menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch menu</a><a href="#menu" data-menu="drinks" class="js-menu">Drinks menu</a><a href="#drinks">Delivery</a></div><div class="col"><h4>Visit</h4><a href="#visit">Contact &amp; map</a><a href="#story">About us</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener">Order on Wolt</a></div><div class="col"><h4>Reserve</h4><p><a href="tel:+420721809084">+420 721 809 084</a></p><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div></div><div class="wrap"><div class="bar"><span>© 2026 RANA Pakistani Restaurant · Všechna práva vyhrazena</span><span>Prague, Czech Republic</span></div></div></footer>
+
+<!-- ============ MENU BOOK ============ -->
+<div class="mb-overlay" id="menuBook" aria-hidden="true">
+  <div class="mb-modal" role="dialog" aria-modal="true" aria-label="RANA menu">
+    <button class="mb-close" type="button" aria-label="Close menu">&times;</button>
+    <div class="mb-tabs" id="mbTabs"></div>
+    <div class="mb-stage">
+      <button class="mb-nav mb-prev" type="button" aria-label="Previous page">&#8249;</button>
+      <div class="mb-book" id="mbBook"></div>
+      <button class="mb-nav mb-next" type="button" aria-label="Next page">&#8250;</button>
+    </div>
+    <div class="mb-foot" id="mbFoot"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var GRILL={h:"Z grilu",en:"Grilled"};
+  /* ---- menu data ---- dish tuple: [name, cz, en, unit, price] ; {h,en}=subheader ---- */
+  var PAGES=[
+    {id:"starters",t:"Polévky & Předkrmy",en:"Soups · Starters",rows:[
+      {h:"Polévky",en:"Soups"},
+      ["Dal Soup","Čočková polévka","Lentil soup","0,2 l","35"],
+      ["Murgh Soup","Kuřecí polévka s vejcem","Chicken soup with egg","0,2 l","40"],
+      {h:"Předkrmy",en:"Starters"},
+      ["Pakora","Smažené brambory, cibule a paprika v čočkovém těstíčku","Potato, onion & pepper in lentil batter","50 g","80"],
+      ["Mushroom Pakora","Smažené žampiony v čočkovém těstíčku","Fried mushrooms in lentil batter","50 g","80"],
+      ["Mirch Pakora","Smažené plátky papriky v čočkovém těstíčku","Fried pepper slices in lentil batter","50 g","80"]
+    ]},
+    {t:"Předkrmy",en:"Starters",cont:true,rows:[
+      ["Samosa","Taštičky plněné zeleninovou směsí","Pastry stuffed with mixed vegetables","2 ks","90"],
+      ["Keema Samosa","Taštičky plněné mletým masem","Pastry stuffed with minced beef","2 ks","105"],
+      ["Murgh Pakora","Kuřecí nudličky v čočkovém těstíčku","Chicken strips in lentil batter","100 g","105"],
+      ["Seekh Kebab","Grilované šišky z mletého hovězího masa","Grilled minced-beef skewers","100 g","130"],
+      ["Murgh Tikka","Grilované marinované kuřecí maso","Marinated grilled chicken","100 g","125"],
+      ["Chappli Kebab","Karbanátky s muškátovým květem a bobkovým listem","Meat patties with mace & bay leaf","100 g","140"],
+      ["Tikka Boti","Grilované kuřecí kousky v pikantním koření","Grilled chicken in special spices","100 g","135"]
+    ]},
+    {t:"Z grilu & speciality",en:"Grill · Special starters",rows:[
+      GRILL,
+      ["Jingha Pakora","Smažené krevety v čočkovém těstíčku","Fried shrimps in lentil batter","80 g","240"],
+      ["Losos Tikka","Grilovaný losos v tradiční pakistánské omáčce","Grilled salmon, Pakistani spices","150 g","275"],
+      ["Grill Jingha","Pikantní grilované krevety","Spiced grilled shrimps","80 g","275"],
+      {h:"Speciální předkrmy",en:"Special starters"},
+      ["Vegetarian Starter","Cibule, brambor, žampiony a paprika v čočkovém těstíčku","Onion, potato, mushroom & pepper","","190"],
+      ["Mixed Grill Starter","Grilovaná směs kuřecího, kebabu, lososa a krevet","Chicken, kebab, salmon & shrimps","","350"]
+    ]},
+    {id:"chicken",t:"Kuřecí",en:"Murgh · Chicken · 120 g",rows:[
+      ["Murgh Curry","Kuřecí maso v kari omáčce","Chicken in a curry sauce","","205"],
+      ["Murgh Bhuna","Kuřecí maso s rajčatovou omáčkou a zázvorem","Chicken in tomato & ginger sauce","","215"],
+      ["Murgh Podiena","Kuřecí maso s mátovou omáčkou","Chicken with mint sauce","","215"],
+      ["Murgh Palak","Kuřecí maso se špenátem","Chicken with spinach","","215"],
+      ["Murgh Chana","Kuřecí maso s cizrnou v kari omáčce","Chicken with chickpeas","","215"],
+      ["Murgh Matter","Kuřecí maso se zeleným hráškem v kari omáčce","Chicken with green peas","","215"],
+      ["Murgh Aloo","Kuřecí maso s bramborem v kari omáčce","Chicken with potatoes","","215"],
+      ["Murgh Dal","Kuřecí maso s čočkou v kari omáčce","Chicken with lentils","","215"]
+    ]},
+    {t:"Kuřecí",en:"Murgh · Chicken",cont:true,rows:[
+      ["Murgh Jelfrezi","Kuřecí maso s cibulí, paprikou, rajčaty a zázvorem","Chicken with onion, pepper, tomato & ginger","","215"],
+      ["Murgh Patia","Kuřecí maso s cibulí, česnekem, zázvorem, paprikami a kečupem","Chicken with onion, garlic, ginger, pepper & ketchup","","215"],
+      ["Murgh Tinda","Kuřecí maso s tindou (malé pákistánské dýně) v kari omáčce","Chicken with tinda (small Pakistani pumpkin)","","215"],
+      ["Murgh Dhania","Kuřecí maso s koriandrovou omáčkou","Chicken with coriander sauce","","215"],
+      ["Murgh Gobhi","Kuřecí maso s květákem v kari omáčce","Chicken with cauliflower","","230"],
+      ["Murgh Dopiaza","Kuřecí s cibulí, česnekem, zázvorem, paprikami a smaženou cibulkou, smetana","Chicken with onion, garlic, ginger, peppers & fried onion, cream","","230"],
+      ["Murgh Vindaloo","Kuřecí maso ve velmi ostré omáčce","Chicken in ultra-hot sauce","","230"],
+      ["Murgh Korma","Kuřecí maso se smetanovou omáčkou a mandlemi","Chicken with cream & almonds","","230"]
+    ]},
+    {t:"Kuřecí",en:"Murgh · Chicken",cont:true,rows:[
+      ["Murgh Butter","Kuřecí maso ve smetanové omáčce s máslem a sušeným ovocem","Chicken in cream, butter & dried fruit","","230"],
+      ["Murgh Bhindi","Kuřecí maso s okrou a cibulí","Chicken with okra & onion","","230"],
+      ["Murgh Ginger","Kuřecí maso v zázvorové omáčce","Chicken in ginger sauce","","230"],
+      ["Murgh Rogan Josh","Kuřecí maso v jemné omáčce s aromatickým kořením","Chicken in a mild aromatic sauce","","230"],
+      ["Murgh White Karahi","Kuřecí maso v omáčce s bílým pepřem a kurkumou","Chicken with white pepper & turmeric","","230"],
+      ["Murgh Tikka Masala","Grilované kuřecí v pikantní smetanové omáčce s kešu a tikka masala","Grilled chicken, spicy creamy sauce, cashews & tikka masala","","230"],
+      ["Murgh Balti","Kuřecí maso s drcenými rajčaty, zázvorovou pastou a koriandrem","Chicken with milled tomato, ginger paste & coriander","","230"]
+    ]},
+    {id:"lamb",t:"Jehněčí",en:"Gosht · Lamb · 120 g",rows:[
+      ["Gosht Curry","Jehněčí maso v kari omáčce","Lamb in a curry sauce","","240"],
+      ["Gosht Bhuna","Jehněčí maso v rajčatové omáčce se zázvorem","Lamb in tomato & ginger sauce","","250"],
+      ["Gosht Aloo","Jehněčí maso s bramborem v kari omáčce","Lamb with potatoes","","250"],
+      ["Gosht Vindaloo","Jehněčí maso ve velmi ostré omáčce","Lamb in ultra-hot sauce","","250"],
+      ["Gosht Palak","Jehněčí maso se špenátem","Lamb with spinach","","250"],
+      ["Gosht Matter","Jehněčí maso se zeleným hráškem","Lamb with green peas","","250"],
+      ["Gosht Chana","Jehněčí maso s cizrnou","Lamb with chickpeas","","250"],
+      ["Gosht Dal","Jehněčí maso s čočkou v kari omáčce","Lamb with lentils","","250"]
+    ]},
+    {t:"Jehněčí",en:"Gosht · Lamb",cont:true,rows:[
+      ["Gosht Jelfrezi","Jehněčí maso s cibulí, paprikou, zázvorem a rajčaty","Lamb with onion, pepper, ginger & tomato","","250"],
+      ["Gosht Patia","Jehněčí maso s cibulí, česnekem, zázvorem, paprikami a kečupem","Lamb with onion, garlic, ginger, pepper & ketchup","","250"],
+      ["Gosht Gobhi","Jehněčí maso s květákem v kari omáčce","Lamb with cauliflower","","270"],
+      ["Gosht Dopiaza","Jehněčí s česnekem, zázvorem, paprikami a smaženou cibulkou, smetana","Lamb with garlic, ginger, peppers & fried onion, cream","","270"],
+      ["Gosht Tinda","Jehněčí maso s tindou (malé pákistánské dýně) v kari omáčce","Lamb with tinda (small Pakistani pumpkin)","","270"],
+      ["Gosht Dhania","Jehněčí maso v koriandrové omáčce","Lamb in coriander sauce","","270"],
+      ["Gosht Podiena","Jehněčí maso v mátové omáčce","Lamb in mint sauce","","270"],
+      ["Gosht Bhindi","Jehněčí maso s okrou a cibulí","Lamb with okra & onion","","270"]
+    ]},
+    {t:"Jehněčí",en:"Gosht · Lamb",cont:true,rows:[
+      ["Gosht Korma","Jehněčí maso ve smetanové omáčce s mandlemi","Lamb with cream & almonds","","270"],
+      ["Gosht Rogan Josh","Jehněčí maso v jemné omáčce s aromatickým kořením","Lamb in a mild aromatic sauce","","270"],
+      ["Gosht White Karahi","Jehněčí maso v omáčce s bílým pepřem a kurkumou","Lamb with white pepper & turmeric","","270"],
+      ["Gosht Balti Karahi","Jehněčí maso s drcenými rajčaty, zázvorovou pastou a koriandrem","Lamb with milled tomato, ginger paste & coriander","","270"],
+      ["Gosht Ginger","Jehněčí maso v zázvorové omáčce","Lamb in ginger sauce","","270"]
+    ]},
+    {id:"beef",t:"Hovězí",en:"Qiman · Beef · 120 g",rows:[
+      ["Keema Curry","Mleté hovězí maso v kari omáčce","Minced beef in a curry sauce","","215"],
+      ["Keema Mattar","Mleté hovězí se zeleným hráškem","Minced beef with green peas","","230"],
+      ["Keema Aloo","Mleté hovězí s kousky brambor","Minced beef with potatoes","","230"],
+      ["Keema Chana","Mleté hovězí s cizrnou","Minced beef with chickpeas","","230"],
+      ["Keema Dal","Mleté hovězí s čočkou","Minced beef with lentils","","230"],
+      ["Keema Gobhi","Mleté hovězí s květákem","Minced beef with cauliflower","","230"],
+      ["Keema Vindaloo","Mleté hovězí ve velmi ostrém kari","Minced beef in ultra-hot sauce","","230"],
+      ["Keema Tinda","Mleté hovězí s tindou (malé pákistánské dýně)","Minced beef with tinda","","230"]
+    ]},
+    {id:"seafood",t:"Krevety",en:"Prawns · 120 g",rows:[
+      ["Prawn Curry","Krevety v kari omáčce","Shrimps in a curry sauce","","285"],
+      ["Prawn Bhuna","Krevety v rajčatové omáčce","Shrimps in a tomato sauce","","295"],
+      ["Prawn Vindaloo","Krevety ve velmi ostré omáčce","Shrimps in ultra-hot sauce","","295"],
+      ["Prawn Patia","Krevety s cibulí, česnekem, zázvorem, paprikami a kečupem","Shrimps with onion, garlic, ginger, pepper & ketchup","","295"],
+      ["Prawn Korma","Krevety ve smetanové omáčce s mandlemi","Shrimps in cream sauce with almonds","","295"],
+      ["Prawn Dopiaza","Krevety s cibulí, česnekem, zázvorem, paprikami a smaženou cibulkou, smetana","Shrimps with onion, garlic, ginger, peppers & fried onion, cream","","295"],
+      ["Prawn Ginger","Krevety v zázvorové omáčce","Shrimps in ginger sauce","","295"]
+    ]},
+    {t:"Tygří krevety",en:"Jingha · Tiger shrimps · 120 g",rows:[
+      ["Jingha Curry","Tygří krevety v kari omáčce","Tiger shrimps in a curry sauce","","315"],
+      ["Jingha Bhuna","Tygří krevety v rajčatové omáčce","Tiger shrimps in a tomato sauce","","330"],
+      ["Jingha Vindaloo","Tygří krevety ve velmi ostré omáčce","Tiger shrimps in ultra-hot sauce","","330"],
+      ["Jingha Jelfrezi","Tygří krevety s cibulkou, zázvorem, paprikou a rajčaty","Tiger shrimps with onion, ginger, pepper & tomato","","330"],
+      ["Jingha Korma","Tygří krevety ve smetanové omáčce s mandlemi","Tiger shrimps in cream sauce with almonds","","350"],
+      ["Jingha Dopiaza","Tygří krevety s cibulí, česnekem, zázvorem, paprikami a smaženou cibulkou","Tiger shrimps with onion, garlic, ginger, peppers & fried onion","","350"],
+      ["Jingha Ginger","Tygří krevety v zázvorové omáčce","Tiger shrimps in ginger sauce","","350"]
+    ]},
+    {id:"biryani",t:"Rizota",en:"Biryani",rows:[
+      ["Sabzi Biryani","Zeleninová směs smíchaná s rýží a kořením","Mixed vegetables with rice & spice","","245"],
+      ["Murgh Biryani","Kuřecí maso smíchané s rýží a kořením","Chicken with rice & spice","","265"],
+      ["Murgh Tikka Biryani","Grilované kuřecí smíchané s rýží a kořením","Grilled chicken with rice & spice","","270"],
+      ["Keema Biryani","Mleté hovězí smíchané s rýží a kořením","Minced beef with rice & spice","","275"],
+      ["Gosht Biryani","Jehněčí maso smíchané s rýží a kořením","Lamb with rice & spice","","300"],
+      ["Prawn Biryani","Krevety smíchané s rýží a kořením","Shrimps with rice & spice","","345"],
+      ["Jingha Biryani","Tygří krevety smíchané s rýží a kořením","Tiger shrimps with rice & spice","","375"],
+      {h:"Speciality pro 2 osoby",en:"Specialities for 2"},
+      ["Murgh Karahi","Kuřecí maso ve speciální omáčce RANA","Chicken in RANA's special sauce","","550"],
+      ["Gosht Karahi","Jehněčí maso ve speciální omáčce RANA","Lamb in RANA's special sauce","","625"]
+    ]},
+    {id:"veg",t:"Vegetariánská jídla",en:"Vegetarian · 120 g",rows:[
+      ["Sabzi Madras","Míchaná zelenina ve středně ostré omáčce","Mixed vegetables in medium-hot sauce","","185"],
+      ["Dal","Čočka v kari omáčce","Lentils in curry sauce","","185"],
+      ["Palak","Špenát v kari omáčce","Spinach in curry sauce","","185"],
+      ["Dal Palak","Čočka se špenátem v kari omáčce","Lentils & spinach","","185"],
+      ["Mixed Sabzi","Špenát, cizrna, brambory a zelený hrášek","Spinach, chickpeas, potato & green peas","","185"],
+      ["Aloo Chana","Brambory s cizrnou v kari omáčce","Potatoes with chickpeas","","185"],
+      ["Aloo Matter","Brambory se zeleným hráškem v kari omáčce","Potatoes with green peas","","185"]
+    ]},
+    {t:"Vegetariánská jídla",en:"Vegetarian",cont:true,rows:[
+      ["Aloo Palak","Brambory se špenátem v kari omáčce","Potatoes with spinach","","185"],
+      ["Aloo Gobhi","Květák s bramborem v kari omáčce","Cauliflower with potatoes","","205"],
+      ["Aloo Tinda","Brambory s tindou (malé pákistánské dýně)","Potatoes with tinda","","205"],
+      ["Dal Tinda","Čočka s tindou (malé pákistánské dýně)","Lentils with tinda","","205"],
+      ["Jelfrezi","Cibule, paprika a zelený hrášek v kari omáčce","Onion, pepper & green peas in curry","","205"],
+      ["Sabzi Korma","Brambory s cizrnou a žampiony ve smetanové omáčce s mandlemi","Potato, chickpeas & mushroom, cream & almonds","","205"],
+      ["Bhindi","Okra s cibulí a rajčaty","Okra with onion & tomato","","205"]
+    ]},
+    {t:"Vegetariánská jídla",en:"Vegetarian",cont:true,rows:[
+      ["Palak Paneer","Špenát s domácím sýrem","Spinach with home cheese","","205"],
+      ["Kari Pakora","Speciální jogurtová omáčka s čočkou a kořením","Yogurt & gram-flour curry with lentils","","205"],
+      ["Soya Dopiaza","Sója s česnekem, zázvorem, paprikami a smaženou cibulkou, smetana","Soya with garlic, ginger, peppers & fried onion, cream","","205"],
+      ["Vegetable Ginger","Míchaná zelenina ve speciální omáčce se zázvorem","Mixed vegetables in special ginger sauce","","205"],
+      ["Paneer Tikka Masala","Domácí sýr v pikantní smetanové omáčce s kešu a tikka masala","Home cheese, spicy creamy sauce, cashews & tikka masala","","205"]
+    ]},
+    {id:"sides",t:"Saláty",en:"Salads",rows:[
+      ["Šopský salát","Rajčata, okurky, papriky a balkánský sýr","Tomato, cucumber, pepper & Balkan cheese","","80"],
+      ["Salát Napoli","Paprika, rajčata, cibule, okurky, olivy, vejce, jogurtovo-majonézová omáčka","Pepper, tomato, onion, cucumber, olives, egg, yogurt-mayo","","90"],
+      ["Salát al Tono","Rajčata, okurky, cibule, tuňák, vejce, sýr a olivy","Tomato, cucumber, onion, tuna, egg, cheese & olives","","95"],
+      ["Krabí salát","Rajčata, cibule, krabí maso, vejce, jogurtovo-majonézová omáčka","Tomato, onion, crab, egg, yogurt-mayo","","105"],
+      ["Salát Fitnes","Rajčata, okurky, hrášek, cibule, žampiony, olivy, grilované kuře, paprika","Tomato, cucumber, peas, onion, mushroom, olives, grilled chicken","","105"]
+    ]},
+    {t:"Přílohy",en:"Side dishes",rows:[
+      {h:"Rýže & chléb",en:"Rice & bread"},
+      ["Chawal","Pákistánská basmati rýže na másle s kořením","Basmati rice cooked in butter with spices","","60"],
+      ["Chawal Mattar","Basmati rýže na másle s hráškem a kořením","Basmati rice with green peas","","65"],
+      ["Chappati","Placky čapátí pečené na speciální pánvi","Flour & water flatbread, dry-roasted","","40"],
+      ["Naan","Kvasnicový chléb pečený v tandoor peci","Leavened flatbread from the tandoor","","50"],
+      ["Garlic Naan","Kvasnicový chléb s česnekem z tandoor pece","Garlic naan from the tandoor","","55"],
+      ["Butter Naan","Kvasnicový chléb s máslem z tandoor pece","Butter naan from the tandoor","","55"]
+    ]},
+    {t:"Dezerty",en:"Desserts",rows:[
+      ["Rasgulla","Kuličky z mléka, citronové šťávy a jogurtu","Milk dumplings in syrup","","80"],
+      ["Kulfi","Speciální smetanová pákistánská zmrzlina","Pakistani cream ice-cream","","80"],
+      ["Mango Kulfi","Smetanová pákistánská zmrzlina s mangem","Mango cream ice-cream","","90"],
+      ["Gulab Jamun","Smažené kuličky ze sušeného mléka v sirupu","Fried milk dumplings in syrup","","80"]
+    ]},
+    {id:"pizza",t:"Pizza",en:"Pizza",rows:[
+      ["Margherita","Tomatová omáčka, sýr","Tomato sauce, cheese","","160"],
+      ["Cipolle","Tomatová omáčka, sýr, cibule","Tomato sauce, cheese, onion","","165"],
+      ["Funghi","Tomatová omáčka, sýr, žampiony","Tomato sauce, cheese, mushrooms","","170"],
+      ["Prosciutto","Tomatová omáčka, sýr, šunka","Tomato sauce, cheese, ham","","170"],
+      ["Salami","Tomatová omáčka, sýr, salám","Tomato sauce, cheese, salami","","170"],
+      ["Mozzarella","Tomatová omáčka, mozzarella, rajčata","Tomato sauce, mozzarella, fresh tomatoes","","170"],
+      ["Napoli","Tomatová omáčka, sýr, olivy, česnek, rajčata, balkánský sýr","Tomato sauce, cheese, olives, garlic, tomatoes, Balkan cheese","","170"]
+    ]},
+    {t:"Pizza",en:"Pizza",cont:true,rows:[
+      ["Siciliana","Tomatová omáčka, sýr, olivy, feferonky","Tomato sauce, cheese, olives, hot peppers","","170"],
+      ["Salami Funghi","Tomatová omáčka, sýr, salám, žampiony","Tomato sauce, cheese, salami, mushrooms","","175"],
+      ["Vegetariana","Tomatová omáčka, sýr, rajčata, žampiony, cibule, paprika","Tomato sauce, cheese, tomatoes, mushrooms, onion, peppers","","175"],
+      ["Popai","Tomatová omáčka, sýr, špenát, vejce","Tomato sauce, cheese, spinach, egg","","180"],
+      ["Hawai","Tomatová omáčka, sýr, šunka, ananas","Tomato sauce, cheese, ham, pineapple","","180"],
+      ["Tonno","Tomatová omáčka, sýr, tuňák","Tomato sauce, cheese, tuna fish","","180"],
+      ["Bolognese","Tomatová omáčka, sýr, mleté maso","Tomato sauce, cheese, minced meat","","185"]
+    ]},
+    {t:"Pizza",en:"Pizza",cont:true,note:"doplňky 25 Kč · krabička 10 Kč",rows:[
+      ["Calzone","Tomatová omáčka, sýr, šunka, žampiony, vejce","Tomato sauce, cheese, ham, mushrooms, egg","","185"],
+      ["Mista","Tomatová omáčka, sýr, salám, žampiony, šunka","Tomato sauce, cheese, salami, mushrooms, ham","","185"],
+      ["Capricciosa","Tomatová omáčka, sýr, šunka, žampiony, vejce, artyčoky","Tomato sauce, cheese, ham, mushrooms, egg, artichokes","","185"],
+      ["Quattro Stagioni","Tomatová omáčka, sýr, šunka, žampiony, olivy, artyčoky","Tomato sauce, cheese, ham, mushrooms, olives, artichokes","","185"],
+      ["Quattro Formaggi","Tomatová omáčka, 4 druhy sýrů","Tomato sauce, 4 kinds of cheese","","185"],
+      ["Chicken Pizza","Tomatová omáčka, sýr, grilované kuřecí maso","Tomato sauce, cheese, grilled chicken","","190"],
+      ["Frutti di Mare","Tomatová omáčka, sýr, mořská směs","Tomato sauce, cheese, seafood","","210"]
+    ]},
+    {id:"lunch",t:"Polední menu",en:"Lunch · Po–Pá 11:30–15:00",rows:[
+      {h:"Polévky",en:"Soups"},
+      ["Dal Soup","Čočková polévka","Lentil soup","","35"],
+      ["Chicken Soup","Kuřecí polévka","Chicken soup","","40"],
+      {h:"Hlavní jídla · vše s basmati rýží · 130 Kč",en:"Mains · all with basmati rice"},
+      ["Fish Curry","Filet z pangasiuse v kari omáčce","Pangasius fillet in curry sauce","",""],
+      ["Murgh Tamater","Kuřecí maso v lehce pikantní rajčatové omáčce","Chicken in mild spicy tomato sauce","",""],
+      ["Murgh Garlic","Kuřecí maso v česnekové omáčce","Chicken in garlic sauce","",""],
+      ["Murgh Chili","Kuřecí maso v čili omáčce","Chicken in chilli sauce","",""],
+      ["Murgh Namkin","Kuřecí maso v lehce pikantní smetanové omáčce","Chicken in mild creamy sauce","",""]
+    ]},
+    {t:"Polední menu",en:"Lunch · all with basmati rice · 130 Kč",cont:true,rows:[
+      ["Murgh Curry","Kuřecí maso v kari omáčce","Chicken in curry sauce","",""],
+      ["Murgh Sabzi","Kuřecí maso se zeleninou","Chicken with vegetables","",""],
+      ["Keema Pali","Mleté hovězí se zelenými lusky","Minced beef with green beans","",""],
+      ["Kofta Curry","Hovězí kuličky v kari omáčce","Beef meatballs in curry sauce","",""],
+      ["Chana Curry","Hnědá cizrna v kari omáčce","Brown chickpeas in curry sauce","",""],
+      ["Soya Chunks","Sojové kuličky v kari omáčce","Soya chunks in curry sauce","",""],
+      ["Sabzi","Míchaná zelenina v kari omáčce","Mixed vegetables in curry sauce","",""],
+      ["Mixed Dal","Pět druhů čočky v kari omáčce","Five lentils in curry sauce","",""]
+    ]},
+    {id:"drinks",type:"drinks",t:"Nápojový lístek",en:"Drinks",cols:[
+      [
+        {h:"Nealkoholické nápoje",en:"Soft drinks",items:[["Coca-Cola","330 ml","50"],["Coca-Cola Zero","330 ml","50"],["Fanta pomeranč","330 ml","50"],["Sprite","330 ml","50"],["Kinley Tonic","250 ml","50"]]},
+        {h:"Minerální vody",en:"Water",items:[["Bonaqua nesycená","250 ml","40"],["Mattoni jemně sycená","330 ml","40"],["Karafa vody","1 l","50"]]},
+        {h:"Džusy",en:"Juices",items:[["Cappy pomeranč 100%","250 ml","50"],["Cappy multivitamin","250 ml","50"],["Cappy jablko 100%","250 ml","50"],["Cappy jahoda","250 ml","50"],["Cappy černý rybíz","250 ml","50"],["Cappy hruška","250 ml","50"]]}
+      ],
+      [
+        {h:"Ledové čaje",en:"Iced tea",items:[["Fuzetea zelený – mango/heřmánek","250 ml","50"],["Fuzetea černý – broskev/ibišek","250 ml","50"]]},
+        {h:"Teplé nápoje",en:"Hot drinks",items:[["Espresso","","50"],["Vídeňská káva","","60"],["Irská káva","","70"],["Čaj dle výběru","","50"],["Zázvorový čaj","","60"]]},
+        {h:"Aperitivy",en:"Aperitifs",items:[["Cinzano Bianco","0,1 l","70"],["Cinzano Bitter","0,1 l","70"],["Cinzano Rosso","0,1 l","70"],["Martini Dry","0,1 l","70"],["Campari","0,04 l","70"]]}
+      ]
+    ]},
+    {type:"drinks",t:"Nápojový lístek",en:"Drinks",cont:true,cols:[
+      [
+        {h:"Destiláty",en:"Spirits · 0,04 l",items:[["Božkov Tuzemský","","60"],["Fernet Stock","","60"],["Becherovka","","60"],["Jägermeister","","60"],["Absolut","","60"],["Finlandia","","60"],["Beefeater Gin","","65"],["Tequila Olmeca Blanco","","60"],["Slivovice Jelínek","","60"],["Ballantine's","","70"],["Jim Beam","","70"],["Jack Daniel's","","90"],["Johnnie Walker","","70"],["Captain Morgan Spiced","","70"],["Baileys","","70"],["Metaxa 5*","","70"],["Don Papa Rum","","110"]]}
+      ],
+      [
+        {h:"Pivo",en:"Beer",items:[["Granát polotmavé 11°","0,4 l","50"],["Pilsner Urquell 12°","0,33 l","50"],["Birell nealko","0,33 l","45"]]},
+        {h:"Vína rozlévaná",en:"Wine by the glass",items:[["Bílé víno","0,2 l","70"],["Červené víno","0,2 l","70"]]},
+        {h:"Šumivé víno",en:"Sparkling",items:[["Bohemia Sekt demi","0,7 l","295"]]},
+        {h:"Pákistánské nápoje",en:"Pakistani drinks",items:[["Masala čaj (slazený s mlékem)","0,3 l","65"],["Mango džus","0,3 l","65"],["Guava džus","0,3 l","65"],["Liči džus","0,3 l","65"],["Lassi (slané/sladké)","0,3 l","50"],["Lassi banana","0,3 l","55"],["Lassi mango","0,3 l","65"]]}
+      ]
+    ]}
+  ];
+
+  /* ---- render helpers ---- */
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function head(p){
+    var k=p.cont?"pokračování":(p.type==="drinks"?"Rana":"Rana · menu");
+    var sub=esc(p.en||"")+(p.note?' &middot; '+esc(p.note):"");
+    return '<div class="mb-hd"><div class="mb-kick">'+esc(k)+'</div><h3 class="mb-title">'+esc(p.t)+'</h3><div class="mb-sub">'+sub+'</div><div class="mb-orn">&#10022; &#10022; &#10022;</div></div>';
+  }
+  function dish(d){
+    var name=esc(d[0]),cz=d[1]?esc(d[1]):"",en=d[2]?esc(d[2]):"",unit=d[3]?esc(d[3]):"",pr=d[4];
+    var desc=cz+(cz&&en?" &middot; ":"")+en;
+    var right=(unit?'<span class="mb-unit">'+unit+'</span>':"")+(pr?'<span class="mb-pr">'+esc(pr)+' Kč</span>':"");
+    return '<div class="mb-dish"><div class="mb-drow"><span class="mb-nm">'+name+'</span><span class="mb-leader"></span>'+right+'</div>'+(desc?'<div class="mb-desc">'+desc+'</div>':"")+'</div>';
+  }
+  function subh(r){return '<div class="mb-sh"><b>'+esc(r.h)+'</b><i>'+esc(r.en||"")+'</i></div>';}
+  function renderList(p){
+    var h=head(p)+'<div class="mb-list">';
+    p.rows.forEach(function(r){h+=(Array.isArray(r)?dish(r):subh(r));});
+    return '<div class="mb-pg"><div class="mb-fit">'+h+'</div></div></div>';
+  }
+  function renderDrinks(p){
+    var h=head(p)+'<div class="mb-dcols">';
+    p.cols.forEach(function(col){
+      h+='<div class="mb-dcol">';
+      col.forEach(function(b){
+        h+='<div class="mb-dblock">'+subh(b);
+        b.items.forEach(function(it){
+          h+='<div class="mb-drk"><span class="mb-nm2">'+esc(it[0])+'</span><span class="mb-leader"></span>'+(it[1]?'<span class="mb-sz">'+esc(it[1])+'</span>':"")+'<span class="mb-pr2">'+esc(it[2])+' Kč</span></div>';
+        });
+        h+='</div>';
+      });
+      h+='</div>';
+    });
+    return '<div class="mb-pg mb-drinks"><div class="mb-fit">'+h+'</div></div></div>';
+  }
+  function renderPage(p){return p.type==="drinks"?renderDrinks(p):renderList(p);}
+
+  var crest='<svg width="58" height="58" viewBox="0 0 64 64" aria-hidden="true"><g fill="#2f7d4f"><path d="M44 32c0 8.8-7.2 16-16 16S12 40.8 12 32 19.2 16 28 16c2.2 0 4.3.4 6.2 1.2C29.8 15 24.9 16.7 22 21c-3.9 5.8-2.3 13.6 3.5 17.5S39.1 41.8 43 36c.4-.6.7-1.2 1-1.9V32z"/><path d="M45 24l1.9 4.2 4.6.5-3.4 3.1 1 4.5L45 34l-4.1 2.3 1-4.5-3.4-3.1 4.6-.5z"/></g></svg>';
+  var coverHTML='<div class="mb-cover"><div class="mb-crest">'+crest+'</div><div class="mb-logo">RANA</div><div class="mb-pk">Pakistani Restaurant</div><div class="mb-mword">Menu</div><div class="mb-rule" style="margin-left:auto;margin-right:auto"></div><div class="mb-meta"><b>Otevřeno denně</b><br>Po–Pá 11:30–22:30 &middot; So–Ne 12:00–22:30<br>Na Dědince 515/12, Praha 8 &middot; Libeň</div></div>';
+  var endHTML='<div class="mb-endc"><div class="mb-crest">'+crest+'</div><div class="mb-logo" style="font-size:clamp(30px,7vw,48px)">Děkujeme</div><div class="mb-pk">Thank you for your visit</div><div class="mb-rule" style="margin-left:auto;margin-right:auto"></div><div class="mb-meta"><b>+420 721 809 084</b><br>ranapakistanirestaurant@gmail.com<br>www.ranapakistani.cz</div></div>';
+
+  /* FACES: [cover, ...pages, back] */
+  var FACES=[coverHTML];
+  var idFace={cover:0};
+  PAGES.forEach(function(p){ if(p.id) idFace[p.id]=FACES.length; FACES.push(renderPage(p)); });
+  FACES.push(endHTML);
+  var L=Math.ceil(FACES.length/2);
+
+  var TABS=[["Předkrmy","starters"],["Kuřecí","chicken"],["Jehněčí","lamb"],["Hovězí","beef"],["Krevety","seafood"],["Rizota","biryani"],["Vegetariánská","veg"],["Saláty","sides"],["Pizza","pizza"],["Polední","lunch"],["Nápoje","drinks"]];
+
+  /* ---- DOM + engine ---- */
+  var overlay=document.getElementById("menuBook");
+  var book=document.getElementById("mbBook");
+  var tabsEl=document.getElementById("mbTabs");
+  var foot=document.getElementById("mbFoot");
+  var btnPrev=overlay.querySelector(".mb-prev");
+  var btnNext=overlay.querySelector(".mb-next");
+  var btnClose=overlay.querySelector(".mb-close");
+
+  var spread=isSpread(), turned=0, activeFace=0, busy=false;
+  function isSpread(){return window.innerWidth>=840;}
+
+  // build tabs
+  TABS.forEach(function(t){
+    if(idFace[t[1]]===undefined) return;
+    var b=document.createElement("button");
+    b.className="mb-tab";b.type="button";b.textContent=t[0];b.dataset.face=idFace[t[1]];
+    b.addEventListener("click",function(){jumpTo(+b.dataset.face);});
+    tabsEl.appendChild(b);
+  });
+
+  function buildBook(){
+    spread=isSpread();
+    book.className="mb-book "+(spread?"is-spread":"is-single");
+    book.classList.add("mb-noanim");
+    book.innerHTML="";
+    if(spread){
+      turned=Math.max(0,Math.min(L,Math.ceil(activeFace/2)));
+      for(var i=0;i<L;i++){
+        var leaf=document.createElement("div");leaf.className="mb-leaf";
+        var f=FACES[2*i]||"", b2=FACES[2*i+1]||'<div class="mb-pg"></div>';
+        leaf.innerHTML='<div class="mb-face mb-front">'+f+'</div><div class="mb-face mb-back">'+b2+'</div>';
+        (function(lf){
+          lf.querySelector(".mb-front").addEventListener("click",function(){go(1);});
+          lf.querySelector(".mb-back").addEventListener("click",function(){go(-1);});
+        })(leaf);
+        book.appendChild(leaf);
+      }
+      activeFace=turned*2;
+    } else {
+      turned=Math.min(FACES.length-1,activeFace);
+      for(var p=0;p<FACES.length;p++){
+        var pg=document.createElement("div");pg.className="mb-page";pg.innerHTML=FACES[p];
+        pg.addEventListener("click",function(){go(1);});
+        book.appendChild(pg);
+      }
+      activeFace=turned;
+    }
+    applyState();
+    fitPages();
+    void book.offsetWidth;
+    book.classList.remove("mb-noanim");
+  }
+  function fitPages(){
+    var fits=book.getElementsByClassName("mb-fit"), i;
+    for(i=0;i<fits.length;i++){
+      var el=fits[i];
+      el.style.transform="";
+      var box=el.clientHeight, need=el.scrollHeight;
+      if(need>box+1){
+        var s=Math.max(0.66,box/need);
+        el.style.transform="scale("+s.toFixed(3)+")";
+      }
+    }
+  }
+  function applyState(){
+    var kids=book.children, n=kids.length, i;
+    for(i=0;i<n;i++){
+      var el=kids[i], f=i<turned;
+      el.classList.toggle("flipped",f);
+      el.style.zIndex=f?(i+1):(n-i);
+    }
+    updateFoot();
+  }
+  function updateFoot(){
+    var max=spread?L:FACES.length-1;
+    foot.textContent=(spread?"Spread ":"Page ")+Math.min(turned+1,max+1)+" / "+(max+1);
+    btnPrev.disabled=turned<=0;
+    btnNext.disabled=turned>=(spread?L:FACES.length-1);
+    var tabs=tabsEl.children;
+    for(var i=0;i<tabs.length;i++){
+      var tf=+tabs[i].dataset.face, on=spread?(tf===2*turned||tf===2*turned-1):(tf===turned);
+      tabs[i].classList.toggle("active",on);
+    }
+  }
+  function go(dir){
+    if(busy) return;
+    var max=spread?L:FACES.length-1;
+    if(dir>0&&turned>=max) return;
+    if(dir<0&&turned<=0) return;
+    busy=true;
+    var idx=dir>0?turned:turned-1;
+    var el=book.children[idx];
+    el.style.zIndex=book.children.length+2;
+    if(dir>0){turned=idx+1;el.classList.add("flipped");} else {turned=idx;el.classList.remove("flipped");}
+    activeFace=spread?turned*2:turned;
+    updateFoot();
+    var done=function(){el.removeEventListener("transitionend",done);var f=idx<turned;el.style.zIndex=f?(idx+1):(book.children.length-idx);busy=false;};
+    el.addEventListener("transitionend",done);
+    setTimeout(function(){if(busy){busy=false;el.style.zIndex=(idx<turned)?(idx+1):(book.children.length-idx);}},1000);
+  }
+  function jumpTo(face){
+    activeFace=face;
+    book.classList.add("mb-noanim");
+    turned=spread?Math.max(0,Math.min(L,Math.ceil(face/2))):face;
+    applyState();
+    void book.offsetWidth;
+    book.classList.remove("mb-noanim");
+  }
+
+  function open(target){
+    var face=(target&&idFace[target]!==undefined)?idFace[target]:0;
+    activeFace=face;
+    overlay.classList.add("open");overlay.setAttribute("aria-hidden","false");
+    document.body.classList.add("mb-lock");
+    buildBook();
+    btnClose.focus();
+  }
+  function close(){
+    overlay.classList.remove("open");overlay.setAttribute("aria-hidden","true");
+    document.body.classList.remove("mb-lock");
+  }
+
+  btnPrev.addEventListener("click",function(){go(-1);});
+  btnNext.addEventListener("click",function(){go(1);});
+  btnClose.addEventListener("click",close);
+  overlay.addEventListener("click",function(e){if(e.target===overlay)close();});
+  document.addEventListener("keydown",function(e){
+    if(!overlay.classList.contains("open"))return;
+    if(e.key==="Escape")close();
+    else if(e.key==="ArrowRight")go(1);
+    else if(e.key==="ArrowLeft")go(-1);
+  });
+  var rt;
+  window.addEventListener("resize",function(){
+    if(!overlay.classList.contains("open"))return;
+    if(isSpread()===spread)return;
+    clearTimeout(rt);rt=setTimeout(buildBook,150);
+  });
+  var links=document.querySelectorAll(".js-menu");
+  for(var i=0;i<links.length;i++){
+    links[i].addEventListener("click",function(e){e.preventDefault();open(this.getAttribute("data-menu"));});
+  }
+})();
+</script>
 </body>
 </html>
