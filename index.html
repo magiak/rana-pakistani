@@ -156,7 +156,7 @@ body.mb-lock{overflow:hidden}
 /* book */
 .mb-book{position:relative;perspective:2400px;flex:none}
 .mb-book.is-spread{--pw:min(432px,43.5vw,55vh);width:calc(var(--pw)*2);height:calc(var(--pw)*1.4);background:var(--paper);border-radius:5px;box-shadow:0 34px 90px rgba(0,0,0,.55)}
-.mb-book.is-single{--pw:min(470px,90vw,64vh);width:var(--pw);height:calc(var(--pw)*1.4)}
+.mb-book.is-single{--pw:min(470px,94vw,calc((96vh - 150px)/1.4));width:var(--pw);height:calc(var(--pw)*1.4)}
 .mb-leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.28,.72,.24,1)}
 .mb-leaf.flipped{transform:rotateY(-179.9deg)}
 .mb-page{position:absolute;inset:0;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper);transition:transform .72s cubic-bezier(.28,.72,.24,1);border-radius:5px;box-shadow:0 26px 64px rgba(0,0,0,.5)}
@@ -203,11 +203,14 @@ body.mb-lock{overflow:hidden}
 .mb-cover .mb-meta b{color:var(--ink)}
 .mb-rule{width:52px;height:1px;background:var(--gold);margin:14px 0}
 @media(max-width:840px){
+.mb-modal{gap:8px}
 .mb-stage{margin-bottom:58px}
 .mb-nav{top:auto;bottom:-54px;transform:none;background:rgba(0,0,0,.4)}
 .mb-prev{left:calc(50% - 58px);right:auto}
 .mb-next{right:calc(50% - 58px);left:auto}
-.mb-tab{font-size:11px;padding:6px 10px}
+.mb-tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;width:100%;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.mb-tabs::-webkit-scrollbar{display:none}
+.mb-tab{flex:0 0 auto;font-size:11px;padding:6px 11px}
 }
 </style>
 </head>
@@ -396,14 +399,14 @@ body.mb-lock{overflow:hidden}
       ["Vegetable Ginger","Míchaná zelenina ve speciální omáčce se zázvorem","Mixed vegetables in special ginger sauce","","205"],
       ["Paneer Tikka Masala","Domácí sýr v pikantní smetanové omáčce s kešu a tikka masala","Home cheese, spicy creamy sauce, cashews & tikka masala","","205"]
     ]},
-    {id:"sides",t:"Saláty",en:"Salads",rows:[
+    {id:"salads",t:"Saláty",en:"Salads",rows:[
       ["Šopský salát","Rajčata, okurky, papriky a balkánský sýr","Tomato, cucumber, pepper & Balkan cheese","","80"],
       ["Salát Napoli","Paprika, rajčata, cibule, okurky, olivy, vejce, jogurtovo-majonézová omáčka","Pepper, tomato, onion, cucumber, olives, egg, yogurt-mayo","","90"],
       ["Salát al Tono","Rajčata, okurky, cibule, tuňák, vejce, sýr a olivy","Tomato, cucumber, onion, tuna, egg, cheese & olives","","95"],
       ["Krabí salát","Rajčata, cibule, krabí maso, vejce, jogurtovo-majonézová omáčka","Tomato, onion, crab, egg, yogurt-mayo","","105"],
       ["Salát Fitnes","Rajčata, okurky, hrášek, cibule, žampiony, olivy, grilované kuře, paprika","Tomato, cucumber, peas, onion, mushroom, olives, grilled chicken","","105"]
     ]},
-    {t:"Přílohy",en:"Side dishes",rows:[
+    {id:"sides",t:"Přílohy",en:"Side dishes",rows:[
       {h:"Rýže & chléb",en:"Rice & bread"},
       ["Chawal","Pákistánská basmati rýže na másle s kořením","Basmati rice cooked in butter with spices","","60"],
       ["Chawal Mattar","Basmati rýže na másle s hráškem a kořením","Basmati rice with green peas","","65"],
@@ -412,7 +415,7 @@ body.mb-lock{overflow:hidden}
       ["Garlic Naan","Kvasnicový chléb s česnekem z tandoor pece","Garlic naan from the tandoor","","55"],
       ["Butter Naan","Kvasnicový chléb s máslem z tandoor pece","Butter naan from the tandoor","","55"]
     ]},
-    {t:"Dezerty",en:"Desserts",rows:[
+    {id:"desserts",t:"Dezerty",en:"Desserts",rows:[
       ["Rasgulla","Kuličky z mléka, citronové šťávy a jogurtu","Milk dumplings in syrup","","80"],
       ["Kulfi","Speciální smetanová pákistánská zmrzlina","Pakistani cream ice-cream","","80"],
       ["Mango Kulfi","Smetanová pákistánská zmrzlina s mangem","Mango cream ice-cream","","90"],
@@ -533,12 +536,14 @@ body.mb-lock{overflow:hidden}
 
   /* FACES: [cover, ...pages, back] */
   var FACES=[coverHTML];
+  var faceCat=[null];
   var idFace={cover:0};
-  PAGES.forEach(function(p){ if(p.id) idFace[p.id]=FACES.length; FACES.push(renderPage(p)); });
-  FACES.push(endHTML);
+  var curCat=null;
+  PAGES.forEach(function(p){ if(p.id){idFace[p.id]=FACES.length;curCat=p.id;} faceCat.push(curCat); FACES.push(renderPage(p)); });
+  FACES.push(endHTML); faceCat.push(null);
   var L=Math.ceil(FACES.length/2);
 
-  var TABS=[["Předkrmy","starters"],["Kuřecí","chicken"],["Jehněčí","lamb"],["Hovězí","beef"],["Krevety","seafood"],["Rizota","biryani"],["Vegetariánská","veg"],["Saláty","sides"],["Pizza","pizza"],["Polední","lunch"],["Nápoje","drinks"]];
+  var TABS=[["Předkrmy","starters"],["Kuřecí","chicken"],["Jehněčí","lamb"],["Hovězí","beef"],["Krevety","seafood"],["Rizota","biryani"],["Vegetariánská","veg"],["Saláty","salads"],["Přílohy","sides"],["Dezerty","desserts"],["Pizza","pizza"],["Polední","lunch"],["Nápoje","drinks"]];
 
   /* ---- DOM + engine ---- */
   var overlay=document.getElementById("menuBook");
@@ -556,7 +561,7 @@ body.mb-lock{overflow:hidden}
   TABS.forEach(function(t){
     if(idFace[t[1]]===undefined) return;
     var b=document.createElement("button");
-    b.className="mb-tab";b.type="button";b.textContent=t[0];b.dataset.face=idFace[t[1]];
+    b.className="mb-tab";b.type="button";b.textContent=t[0];b.dataset.face=idFace[t[1]];b.dataset.cat=t[1];
     b.addEventListener("click",function(){jumpTo(+b.dataset.face);});
     tabsEl.appendChild(b);
   });
@@ -619,11 +624,16 @@ body.mb-lock{overflow:hidden}
     foot.textContent=(spread?"Spread ":"Page ")+Math.min(turned+1,max+1)+" / "+(max+1);
     btnPrev.disabled=turned<=0;
     btnNext.disabled=turned>=(spread?L:FACES.length-1);
-    var tabs=tabsEl.children;
+    var vis={};
+    if(spread){var l=2*turned-1,r=2*turned;if(l>=0&&faceCat[l])vis[faceCat[l]]=1;if(r<faceCat.length&&faceCat[r])vis[faceCat[r]]=1;}
+    else if(faceCat[turned])vis[faceCat[turned]]=1;
+    var tabs=tabsEl.children,firstActive=null;
     for(var i=0;i<tabs.length;i++){
-      var tf=+tabs[i].dataset.face, on=spread?(tf===2*turned||tf===2*turned-1):(tf===turned);
+      var on=!!vis[tabs[i].dataset.cat];
       tabs[i].classList.toggle("active",on);
+      if(on&&!firstActive)firstActive=tabs[i];
     }
+    if(!spread&&firstActive&&firstActive.scrollIntoView)firstActive.scrollIntoView({block:"nearest",inline:"center"});
   }
   function go(dir){
     if(busy) return;
