@@ -33,8 +33,8 @@ Single-page static website:
 
 Clicking **"Open the full menu & lunch specials"** (or *Menu* / *Lunch* in the nav) opens a book-style overlay with a real 3-D page-turn animation:
 
-- Two-page spread on desktop, single page on mobile (rebuilds on breakpoint change)
-- Category quick-nav tabs, prev/next arrows, click-to-turn, and keyboard control (← → / Esc)
+- Two-page spread on desktop, single page on mobile (rebuilds on breakpoint change; the book is sized in JS to always fit the viewport)
+- Category quick-nav tabs, an always-visible footer pager (prev / page count / next), click-to-turn, swipe on touch, and keyboard control (← → / Esc)
 - Content auto-scales to each page so nothing overflows
 - Fully self-contained — no libraries, no external requests
 
@@ -66,7 +66,7 @@ Open `index.html` directly in a browser — no server or build step needed.
 This site was generated from a design concept, then populated with real data where available. A few items should be confirmed with the owner before it goes to the client:
 
 - **Menu dishes, descriptions and prices** (both the six featured cards and the full flip-book menu) are transcribed from RANA's own printed à-la-carte menu, plus the 2025 lunch menu and the drinks list on `ranapakistani.cz`. These are the **dine-in** prices; Wolt/delivery prices may differ. The printed menu is undated in places — confirm the current figures with the owner before pitching.
-- **"Since 2003 / 20 years"** comes from the original design concept and has **not** been independently verified. Confirm the founding year.
+- **"For over 20 years"** is the restaurant's own wording, taken from their current website ("We cook for you. For over 20 years."), so it is safe to use. The specific founding year **"Since 2003"** was an inference from it, was never stated by the restaurant, and has been **removed** from the site.
 - **`rezervace@ranapakistani.cz`** and the reservation-by-email flow come from the concept — confirm the address is live.
 - **All photos are the restaurant's own.** The hero, About and gallery images are RANA's own food photography taken from their existing website (`ranapakistani.cz`); the menu-card photos come from their **Wolt** listing. No stock imagery is used.
 - Real **interior, storefront and additional dish photos** were also collected from `ranapakistani.cz` (their old site) and can be dropped into a "Step inside" venue section if desired — though most are low-resolution and would benefit from a reshoot.

@@ -49,6 +49,16 @@ img{display:block;max-width:100%}
 .btn.ghost:hover{background:var(--ink);color:var(--cream)}
 .btn.gold{background:#111;border-color:#111}
 .btn.gold:hover{background:#000}
+/* mobile nav */
+.mnav-btn{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;background:transparent;border:0;cursor:pointer;padding:0}
+.mnav-btn span{display:block;width:22px;height:2px;background:var(--ink);transition:transform .25s,opacity .2s}
+.mnav-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mnav-btn.open span:nth-child(2){opacity:0}
+.mnav-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{display:none;flex-direction:column;border-top:1px solid var(--line);padding:8px 22px 18px}
+.mnav a{color:var(--ink);font-size:16px;font-weight:500;padding:12px 0;border-bottom:1px dotted var(--line)}
+.mnav a:last-child{border-bottom:none}
+.mnav .mnav-tel{font-weight:700;color:var(--clay)}
 /* hero */
 .hero{position:relative;height:88vh;min-height:620px;max-height:860px}
 .hero .bg{position:absolute;inset:0}
@@ -106,7 +116,7 @@ img{display:block;max-width:100%}
 .info .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--clay);width:118px;flex-shrink:0;padding-top:3px}
 .info .v{font-size:16.5px;line-height:1.5}
 .hours{display:flex;flex-direction:column;gap:8px}
-.hours .hr{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:6px 0;max-width:280px}
+.hours .hr{display:flex;justify-content:space-between;gap:24px;border-bottom:1px dotted var(--line);padding:6px 0;max-width:280px}
 .hours .hr b{font-weight:700}
 .mapwrap{height:520px;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
 .resvcard{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:36px 34px;box-shadow:0 20px 50px rgba(60,40,20,.08)}
@@ -125,6 +135,10 @@ img{display:block;max-width:100%}
 @media(max-width:900px){
 .wrap{padding:0 22px}
 .nav,.tel{display:none}
+.mnav-btn{display:flex}
+.mnav.open{display:flex}
+.hact{gap:12px}
+.hdr .btn{padding:10px 16px}
 .welcome .grid,.visit .grid{grid-template-columns:1fr;gap:40px}
 .welcome .imgwrap{height:400px}
 .mgrid{grid-template-columns:1fr}
@@ -133,34 +147,37 @@ img{display:block;max-width:100%}
 .wolt .wrap{flex-direction:column;align-items:flex-start;text-align:left}
 .sec{padding:70px 0}
 .hero h1{font-size:44px}
+.welcome h2,.menu h2,.gal h2,.visit h2{font-size:34px}
+.wolt h2{font-size:32px}
 .badge{width:104px;height:104px;top:22px;right:22px}
 .badge b{font-size:34px}
 }
 /* ============ MENU BOOK (flip-page menu) ============ */
-.mb-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(18,12,7,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
-.mb-overlay.open{display:flex}
+.mb-overlay{position:fixed;left:0;top:0;right:0;height:100dvh;z-index:1000;display:none;background:rgba(18,12,7,.82);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.mb-overlay.open{display:block}
 body.mb-lock{overflow:hidden}
-.mb-modal{position:relative;width:min(1080px,97vw);max-height:97vh;display:flex;flex-direction:column;align-items:center;gap:12px}
-.mb-close{position:absolute;top:-2px;right:-2px;z-index:8;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(0,0,0,.28);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.mb-modal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;box-sizing:border-box;padding:12px 14px 10px;gap:10px}
+.mb-close{position:absolute;top:10px;right:12px;z-index:30;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(0,0,0,.3);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .mb-close:hover{background:var(--clay)}
-.mb-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:100%}
-.mb-tab{appearance:none;border:1px solid rgba(230,192,121,.45);background:rgba(255,255,255,.05);color:#F2E6CE;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.05em;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.18s}
+.mb-tabs{position:relative;z-index:5;flex:0 0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:100%;padding:2px 56px 5px}
+.mb-tab{flex:0 0 auto;appearance:none;border:1px solid rgba(230,192,121,.45);background:rgba(255,255,255,.05);color:#F2E6CE;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.05em;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.18s}
 .mb-tab:hover{background:rgba(230,192,121,.2)}
 .mb-tab.active{background:var(--gold);border-color:var(--gold);color:#3a2410}
-.mb-stage{position:relative;display:flex;align-items:center;justify-content:center;width:100%}
-.mb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:7;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.32);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.mb-stage{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+.mb-foot{position:relative;z-index:5;flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:18px;padding:2px 0 0}
+.mb-count{color:#E9D9BE;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;min-width:88px;text-align:center}
+.mb-nav{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.34);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
 .mb-nav:hover{background:var(--clay)}
-.mb-nav[disabled]{opacity:.25;cursor:default}
-.mb-prev{left:-62px}.mb-next{right:-62px}
-.mb-foot{color:#E9D9BE;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;min-height:1em}
+.mb-nav[disabled]{opacity:.28;cursor:default}
 /* book */
-.mb-book{position:relative;perspective:2400px;flex:none}
-.mb-book.is-spread{--pw:min(432px,43.5vw,55vh);width:calc(var(--pw)*2);height:calc(var(--pw)*1.4);background:var(--paper);border-radius:5px;box-shadow:0 34px 90px rgba(0,0,0,.55)}
-.mb-book.is-single{--pw:min(470px,94vw,calc((96vh - 150px)/1.4));width:var(--pw);height:calc(var(--pw)*1.4)}
-.mb-leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.28,.72,.24,1)}
+.mb-book{position:relative;perspective:2200px;flex:none;max-width:100%}
+.mb-book.is-spread,.mb-book.is-single{background:var(--paper);border-radius:5px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.mb-leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.28,.72,.24,1)}
 .mb-leaf.flipped{transform:rotateY(-179.9deg)}
-.mb-page{position:absolute;inset:0;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper);transition:transform .72s cubic-bezier(.28,.72,.24,1);border-radius:5px;box-shadow:0 26px 64px rgba(0,0,0,.5)}
+.mb-page{position:absolute;inset:0;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper);transition:transform .7s cubic-bezier(.28,.72,.24,1);border-radius:5px}
+.mb-page.mb-flipping{box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .mb-page.flipped{transform:rotateY(-179.9deg)}
+.mb-flipping{z-index:900!important}
 .mb-noanim .mb-leaf,.mb-noanim .mb-page{transition:none!important}
 .mb-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:var(--paper)}
 .mb-back{transform:rotateY(180deg)}
@@ -203,21 +220,20 @@ body.mb-lock{overflow:hidden}
 .mb-cover .mb-meta b{color:var(--ink)}
 .mb-rule{width:52px;height:1px;background:var(--gold);margin:14px 0}
 @media(max-width:840px){
-.mb-modal{gap:8px}
-.mb-stage{margin-bottom:58px}
-.mb-nav{top:auto;bottom:-54px;transform:none;background:rgba(0,0,0,.4)}
-.mb-prev{left:calc(50% - 58px);right:auto}
-.mb-next{right:calc(50% - 58px);left:auto}
-.mb-tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;width:100%;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.mb-tabs::-webkit-scrollbar{display:none}
-.mb-tab{flex:0 0 auto;font-size:11px;padding:6px 11px}
+.mb-modal{padding:10px 10px 8px;gap:8px}
+.mb-kick,.mb-orn{display:none}
+.mb-tabs{padding:2px 4px 5px}
+.mb-close{width:36px;height:36px;font-size:18px}
+.mb-tab{font-size:11px;padding:6px 11px}
+.mb-nav{width:44px;height:44px}
+.mb-count{min-width:80px}
 }
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> <span class="serif" style="font-weight:500;font-size:15px;letter-spacing:.06em;color:var(--muted)">Pakistani</span></a><nav class="nav"><a href="#menu" data-menu="starters" class="js-menu">Menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a></nav><div class="hact"><a href="tel:+420721809084" class="tel">+420 721 809 084</a><a href="#visit" class="btn">Reserve</a></div></div></header>
+<header class="hdr"><div class="wrap"><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> <span class="serif" style="font-weight:500;font-size:15px;letter-spacing:.06em;color:var(--muted)">Pakistani</span></a><nav class="nav"><a href="#menu" data-menu="starters" class="js-menu">Menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a></nav><div class="hact"><a href="tel:+420721809084" class="tel">+420 721 809 084</a><a href="#visit" class="btn">Reserve</a><button class="mnav-btn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button></div></div><nav class="mnav" id="mnav"><a href="#menu" data-menu="starters" class="js-menu">Menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch menu</a><a href="#drinks">Delivery</a><a href="#story">About</a><a href="#visit">Contact</a><a href="tel:+420721809084" class="mnav-tel">+420 721 809 084</a></nav></header>
 
-<section id="top" class="hero"><div class="bg"><div class="slot"><img src="images/hero.jpg" alt="A spread of RANA's Pakistani dishes — karahi curries, biryani, tandoori grill and fresh naan"></div></div><div class="scrim"></div><div class="badge"><b>20</b><span>Years</span></div><div class="wrap inner"><span class="label">Prague · Since 2003</span><h1 class="serif">The true taste of Pakistan</h1><p>Traditional recipes, the very best ingredients, and a table set for you — as it has been for over twenty years.</p><div class="cta"><a href="#visit" class="btn">Reserve a table</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold">Order on Wolt →</a></div></div></section>
+<section id="top" class="hero"><div class="bg"><div class="slot"><img src="images/hero.jpg" alt="A spread of RANA's Pakistani dishes — karahi curries, biryani, tandoori grill and fresh naan"></div></div><div class="scrim"></div><div class="badge"><b>20</b><span>Years</span></div><div class="wrap inner"><span class="label">Prague · Pakistani cuisine</span><h1 class="serif">The true taste of Pakistan</h1><p>Traditional recipes, the very best ingredients, and a table set for you — as it has been for over twenty years.</p><div class="cta"><a href="#visit" class="btn">Reserve a table</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener" class="btn gold">Order on Wolt →</a></div></div></section>
 
 <section id="story" class="sec welcome"><div class="wrap"><div class="grid"><div><span class="label">Welcome to our home</span><h2 class="serif">We cook for you.<br>For over 20 years.</h2><p>We wish you a warm welcome into our home. If you'd like to taste and enjoy our authentic Pakistani cuisine, we would love to see you.</p><p>Give us a ring to book ahead — especially in the evening, as we often entertain a full house of guests. Come hungry; leave as family.</p><div class="orn" style="justify-content:flex-start;margin-top:24px"><i></i><span class="line"></span></div><p class="sign">— The Rana family</p></div><div class="imgwrap arch"><div class="slot"><img src="images/story.jpg" alt="Chicken karahi simmered with tomato, ginger and chilli in a traditional copper karahi"></div></div></div></div></section>
 
@@ -227,7 +243,7 @@ body.mb-lock{overflow:hidden}
 
 <section class="sec gal"><div class="wrap"><div class="orn"><span class="line"></span><i></i><span class="line"></span></div><span class="label" style="display:block;text-align:center;margin-top:22px">Fresh from our kitchen</span><h2 class="serif">A closer look</h2><div class="ggrid"><div class="arch"><div class="slot"><img src="images/gal1.jpg" alt="Tandoori-grilled chicken tikka, freshly charred and garnished"></div></div><div class="arch"><div class="slot"><img src="images/gal2.jpg" alt="A karahi curry served with fresh tandoor-baked naan"></div></div><div class="arch"><div class="slot"><img src="images/gal3.jpg" alt="Lamb tikka biryani with fragrant basmati rice"></div></div></div></div></section>
 
-<section id="visit" class="sec visit"><div class="wrap"><div class="grid"><div><span class="label">Find us · Reserve</span><h2 class="serif">Our restaurant</h2><div class="info"><div class="row"><div class="k">Address</div><div class="v"><b>Na Dědince 515/12</b><br>180 00 Praha 8<br><a href="https://maps.google.com/?q=50.11556176,14.47244222" target="_blank" rel="noopener">Open in Google Maps →</a></div></div><div class="row"><div class="k">Reservation</div><div class="v"><b><a href="tel:+420721809084">+420 721 809 084</a></b><br><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div><div class="row"><div class="k">Hours</div><div class="v"><div class="hours"><div class="hr"><span>Monday</span><b>11:30 – 16:00</b></div><div class="hr"><span>Tue – Fri</span><b>11:30 – 22:30</b></div><div class="hr"><span>Sat – Sun</span><b>12:00 – 22:30</b></div><div class="hr"><span>Kitchen closes</span><b>22:00</b></div></div></div></div><div class="row"><div class="k">Follow</div><div class="v"><a href="https://www.facebook.com/pages/P%C3%A1kist%C3%A1nsk%C3%A1-Restaurace-Rana-Wwwpakistanicz/512073632147219" target="_blank" rel="noopener">Facebook</a></div></div></div><div class="resvcard" style="margin-top:36px"><h3 class="serif">Book ahead</h3><p class="muted">Evenings fill quickly. Give us a ring and we'll set a table for you.</p><div class="big">+420 721 809 084</div><a href="tel:+420721809084" class="btn" style="margin-top:16px">Call to reserve</a></div></div><div class="mapwrap"><iframe title="Map to RANA Pakistani Restaurant" src="https://maps.google.com/maps?q=50.11556176,14.47244222&z=16&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe></div></div></div></section>
+<section id="visit" class="sec visit"><div class="wrap"><div class="grid"><div><span class="label">Find us · Reserve</span><h2 class="serif">Our restaurant</h2><div class="info"><div class="row"><div class="k">Address</div><div class="v"><b>Na Dědince 515/12</b><br>180 00 Praha 8<br><a href="https://maps.google.com/?q=50.11556176,14.47244222" target="_blank" rel="noopener">Open in Google Maps →</a></div></div><div class="row"><div class="k">Reservation</div><div class="v"><b><a href="tel:+420721809084">+420 721 809 084</a></b><br><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div><div class="row"><div class="k">Hours</div><div class="v"><div class="hours"><div class="hr"><span>Monday</span><b>11:30 - 16:00</b></div><div class="hr"><span>Tue - Fri</span><b>11:30 - 22:30</b></div><div class="hr"><span>Sat - Sun</span><b>12:00 - 22:30</b></div><div class="hr"><span>Kitchen closes</span><b>22:00</b></div></div></div></div><div class="row"><div class="k">Follow</div><div class="v"><a href="https://www.facebook.com/pages/P%C3%A1kist%C3%A1nsk%C3%A1-Restaurace-Rana-Wwwpakistanicz/512073632147219" target="_blank" rel="noopener">Facebook</a></div></div></div><div class="resvcard" style="margin-top:36px"><h3 class="serif">Book ahead</h3><p class="muted">Evenings fill quickly. Give us a ring and we'll set a table for you.</p><div class="big">+420 721 809 084</div><a href="tel:+420721809084" class="btn" style="margin-top:16px">Call to reserve</a></div></div><div class="mapwrap"><iframe title="Map to RANA Pakistani Restaurant" src="https://maps.google.com/maps?q=50.11556176,14.47244222&z=16&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe></div></div></div></section>
 
 <footer class="ft"><div class="wrap"><div><a href="#top" class="brand"><span class="dot"></span>RANA <b>·</b> Pakistani</a><p style="margin-top:14px;max-width:32ch;font-size:15px">The true taste of Pakistan in the heart of Prague. We cook for you — for over 20 years.</p></div><div class="cols"><div class="col"><h4>Menu</h4><a href="#menu" data-menu="starters" class="js-menu">Main menu</a><a href="#menu" data-menu="lunch" class="js-menu">Lunch menu</a><a href="#menu" data-menu="drinks" class="js-menu">Drinks menu</a><a href="#drinks">Delivery</a></div><div class="col"><h4>Visit</h4><a href="#visit">Contact &amp; map</a><a href="#story">About us</a><a href="https://wolt.com/cs/cze/prague/restaurant/rana-pakistani-restaurant" target="_blank" rel="noopener">Order on Wolt</a></div><div class="col"><h4>Reserve</h4><p><a href="tel:+420721809084">+420 721 809 084</a></p><a href="mailto:rezervace@ranapakistani.cz">rezervace@ranapakistani.cz</a></div></div></div><div class="wrap"><div class="bar"><span>© 2026 RANA Pakistani Restaurant · Všechna práva vyhrazena</span><span>Prague, Czech Republic</span></div></div></footer>
 
@@ -236,12 +252,12 @@ body.mb-lock{overflow:hidden}
   <div class="mb-modal" role="dialog" aria-modal="true" aria-label="RANA menu">
     <button class="mb-close" type="button" aria-label="Close menu">&times;</button>
     <div class="mb-tabs" id="mbTabs"></div>
-    <div class="mb-stage">
+    <div class="mb-stage"><div class="mb-book" id="mbBook"></div></div>
+    <div class="mb-foot">
       <button class="mb-nav mb-prev" type="button" aria-label="Previous page">&#8249;</button>
-      <div class="mb-book" id="mbBook"></div>
+      <span class="mb-count" id="mbCount"></span>
       <button class="mb-nav mb-next" type="button" aria-label="Next page">&#8250;</button>
     </div>
-    <div class="mb-foot" id="mbFoot"></div>
   </div>
 </div>
 
@@ -448,7 +464,7 @@ body.mb-lock{overflow:hidden}
       ["Chicken Pizza","Tomatová omáčka, sýr, grilované kuřecí maso","Tomato sauce, cheese, grilled chicken","","190"],
       ["Frutti di Mare","Tomatová omáčka, sýr, mořská směs","Tomato sauce, cheese, seafood","","210"]
     ]},
-    {id:"lunch",t:"Polední menu",en:"Lunch · Po–Pá 11:30–15:00",rows:[
+    {id:"lunch",t:"Polední menu",en:"Lunch · Po-Pá 11:30-15:00",rows:[
       {h:"Polévky",en:"Soups"},
       ["Dal Soup","Čočková polévka","Lentil soup","","35"],
       ["Chicken Soup","Kuřecí polévka","Chicken soup","","40"],
@@ -476,7 +492,7 @@ body.mb-lock{overflow:hidden}
         {h:"Džusy",en:"Juices",items:[["Cappy pomeranč 100%","250 ml","50"],["Cappy multivitamin","250 ml","50"],["Cappy jablko 100%","250 ml","50"],["Cappy jahoda","250 ml","50"],["Cappy černý rybíz","250 ml","50"],["Cappy hruška","250 ml","50"]]}
       ],
       [
-        {h:"Ledové čaje",en:"Iced tea",items:[["Fuzetea zelený – mango/heřmánek","250 ml","50"],["Fuzetea černý – broskev/ibišek","250 ml","50"]]},
+        {h:"Ledové čaje",en:"Iced tea",items:[["Fuzetea zelený - mango/heřmánek","250 ml","50"],["Fuzetea černý - broskev/ibišek","250 ml","50"]]},
         {h:"Teplé nápoje",en:"Hot drinks",items:[["Espresso","","50"],["Vídeňská káva","","60"],["Irská káva","","70"],["Čaj dle výběru","","50"],["Zázvorový čaj","","60"]]},
         {h:"Aperitivy",en:"Aperitifs",items:[["Cinzano Bianco","0,1 l","70"],["Cinzano Bitter","0,1 l","70"],["Cinzano Rosso","0,1 l","70"],["Martini Dry","0,1 l","70"],["Campari","0,04 l","70"]]}
       ]
@@ -531,7 +547,7 @@ body.mb-lock{overflow:hidden}
   function renderPage(p){return p.type==="drinks"?renderDrinks(p):renderList(p);}
 
   var crest='<svg width="58" height="58" viewBox="0 0 64 64" aria-hidden="true"><g fill="#2f7d4f"><path d="M44 32c0 8.8-7.2 16-16 16S12 40.8 12 32 19.2 16 28 16c2.2 0 4.3.4 6.2 1.2C29.8 15 24.9 16.7 22 21c-3.9 5.8-2.3 13.6 3.5 17.5S39.1 41.8 43 36c.4-.6.7-1.2 1-1.9V32z"/><path d="M45 24l1.9 4.2 4.6.5-3.4 3.1 1 4.5L45 34l-4.1 2.3 1-4.5-3.4-3.1 4.6-.5z"/></g></svg>';
-  var coverHTML='<div class="mb-cover"><div class="mb-crest">'+crest+'</div><div class="mb-logo">RANA</div><div class="mb-pk">Pakistani Restaurant</div><div class="mb-mword">Menu</div><div class="mb-rule" style="margin-left:auto;margin-right:auto"></div><div class="mb-meta"><b>Otevřeno denně</b><br>Po–Pá 11:30–22:30 &middot; So–Ne 12:00–22:30<br>Na Dědince 515/12, Praha 8 &middot; Libeň</div></div>';
+  var coverHTML='<div class="mb-cover"><div class="mb-crest">'+crest+'</div><div class="mb-logo">RANA</div><div class="mb-pk">Pakistani Restaurant</div><div class="mb-mword">Menu</div><div class="mb-rule" style="margin-left:auto;margin-right:auto"></div><div class="mb-meta"><b>Otevřeno denně</b><br>Po-Pá 11:30-22:30 &middot; So-Ne 12:00-22:30<br>Na Dědince 515/12, Praha 8 &middot; Libeň</div></div>';
   var endHTML='<div class="mb-endc"><div class="mb-crest">'+crest+'</div><div class="mb-logo" style="font-size:clamp(30px,7vw,48px)">Děkujeme</div><div class="mb-pk">Thank you for your visit</div><div class="mb-rule" style="margin-left:auto;margin-right:auto"></div><div class="mb-meta"><b>+420 721 809 084</b><br>ranapakistanirestaurant@gmail.com<br>www.ranapakistani.cz</div></div>';
 
   /* FACES: [cover, ...pages, back] */
@@ -548,14 +564,16 @@ body.mb-lock{overflow:hidden}
   /* ---- DOM + engine ---- */
   var overlay=document.getElementById("menuBook");
   var book=document.getElementById("mbBook");
+  var stageEl=overlay.querySelector(".mb-stage");
   var tabsEl=document.getElementById("mbTabs");
-  var foot=document.getElementById("mbFoot");
+  var countEl=document.getElementById("mbCount");
   var btnPrev=overlay.querySelector(".mb-prev");
   var btnNext=overlay.querySelector(".mb-next");
   var btnClose=overlay.querySelector(".mb-close");
 
-  var spread=isSpread(), turned=0, activeFace=0, busy=false;
+  var spread=isSpread(), turned=0, activeFace=0, busy=false, swiped=false;
   function isSpread(){return window.innerWidth>=840;}
+  function maxTurn(){return spread?L:FACES.length-1;}
 
   // build tabs
   TABS.forEach(function(t){
@@ -565,6 +583,26 @@ body.mb-lock{overflow:hidden}
     b.addEventListener("click",function(){jumpTo(+b.dataset.face);});
     tabsEl.appendChild(b);
   });
+
+  // size the book to fit the stage (no vh math — deterministic)
+  function sizeBook(){
+    var availH=stageEl.clientHeight, availW=stageEl.clientWidth;
+    if(!availH||!availW) return;
+    var cols=spread?2:1, ratio=1.4;
+    var pw=Math.min(availW/cols, availH/ratio);
+    pw=Math.max(60,pw);
+    book.style.width=(pw*cols)+"px";
+    book.style.height=(pw*ratio)+"px";
+    placeClose();
+  }
+  // in single-page mode the close button floats over the page's top-right
+  // corner instead of reserving space above the tabs
+  function placeClose(){
+    if(spread){btnClose.style.top="";btnClose.style.right="";return;}
+    var br=book.getBoundingClientRect();
+    btnClose.style.top=(br.top+8)+"px";
+    btnClose.style.right=(window.innerWidth-br.right+8)+"px";
+  }
 
   function buildBook(){
     spread=isSpread();
@@ -578,21 +616,26 @@ body.mb-lock{overflow:hidden}
         var f=FACES[2*i]||"", b2=FACES[2*i+1]||'<div class="mb-pg"></div>';
         leaf.innerHTML='<div class="mb-face mb-front">'+f+'</div><div class="mb-face mb-back">'+b2+'</div>';
         (function(lf){
-          lf.querySelector(".mb-front").addEventListener("click",function(){go(1);});
-          lf.querySelector(".mb-back").addEventListener("click",function(){go(-1);});
+          lf.querySelector(".mb-front").addEventListener("click",function(){if(swiped){swiped=false;return;}go(1);});
+          lf.querySelector(".mb-back").addEventListener("click",function(){if(swiped){swiped=false;return;}go(-1);});
         })(leaf);
         book.appendChild(leaf);
       }
       activeFace=turned*2;
     } else {
-      turned=Math.min(FACES.length-1,activeFace);
+      turned=Math.max(0,Math.min(FACES.length-1,activeFace));
       for(var p=0;p<FACES.length;p++){
         var pg=document.createElement("div");pg.className="mb-page";pg.innerHTML=FACES[p];
-        pg.addEventListener("click",function(){go(1);});
+        pg.addEventListener("click",function(e){
+          if(swiped){swiped=false;return;}
+          var r=this.getBoundingClientRect();
+          if(e.clientX<r.left+r.width*0.32) go(-1); else go(1);
+        });
         book.appendChild(pg);
       }
       activeFace=turned;
     }
+    sizeBook();
     applyState();
     fitPages();
     void book.offsetWidth;
@@ -605,25 +648,27 @@ body.mb-lock{overflow:hidden}
       el.style.transform="";
       var box=el.clientHeight, need=el.scrollHeight;
       if(need>box+1){
-        var s=Math.max(0.66,box/need);
+        var s=Math.max(0.62,box/need);
         el.style.transform="scale("+s.toFixed(3)+")";
       }
     }
   }
+  // z-index derived purely from `turned` — idempotent, so a late animation
+  // callback can never corrupt the stack (fixes "jump shows a blank page")
   function applyState(){
     var kids=book.children, n=kids.length, i;
     for(i=0;i<n;i++){
       var el=kids[i], f=i<turned;
       el.classList.toggle("flipped",f);
-      el.style.zIndex=f?(i+1):(n-i);
+      if(!el.classList.contains("mb-flipping")) el.style.zIndex=f?(i+1):(n-i);
     }
     updateFoot();
   }
   function updateFoot(){
-    var max=spread?L:FACES.length-1;
-    foot.textContent=(spread?"Spread ":"Page ")+Math.min(turned+1,max+1)+" / "+(max+1);
+    var max=maxTurn();
+    countEl.textContent=Math.min(turned+1,max+1)+" / "+(max+1);
     btnPrev.disabled=turned<=0;
-    btnNext.disabled=turned>=(spread?L:FACES.length-1);
+    btnNext.disabled=turned>=max;
     var vis={};
     if(spread){var l=2*turned-1,r=2*turned;if(l>=0&&faceCat[l])vis[faceCat[l]]=1;if(r<faceCat.length&&faceCat[r])vis[faceCat[r]]=1;}
     else if(faceCat[turned])vis[faceCat[turned]]=1;
@@ -633,32 +678,51 @@ body.mb-lock{overflow:hidden}
       tabs[i].classList.toggle("active",on);
       if(on&&!firstActive)firstActive=tabs[i];
     }
-    if(!spread&&firstActive&&firstActive.scrollIntoView)firstActive.scrollIntoView({block:"nearest",inline:"center"});
+    if(firstActive&&firstActive.scrollIntoView)firstActive.scrollIntoView({block:"nearest",inline:"center"});
   }
   function go(dir){
     if(busy) return;
-    var max=spread?L:FACES.length-1;
+    var max=maxTurn();
     if(dir>0&&turned>=max) return;
     if(dir<0&&turned<=0) return;
-    busy=true;
     var idx=dir>0?turned:turned-1;
     var el=book.children[idx];
-    el.style.zIndex=book.children.length+2;
-    if(dir>0){turned=idx+1;el.classList.add("flipped");} else {turned=idx;el.classList.remove("flipped");}
+    if(!el) return;
+    turned=dir>0?turned+1:turned-1;
     activeFace=spread?turned*2:turned;
+    busy=true;
+    el.classList.add("mb-flipping");
+    el.classList.toggle("flipped",dir>0);
     updateFoot();
-    var done=function(){el.removeEventListener("transitionend",done);var f=idx<turned;el.style.zIndex=f?(idx+1):(book.children.length-idx);busy=false;};
-    el.addEventListener("transitionend",done);
-    setTimeout(function(){if(busy){busy=false;el.style.zIndex=(idx<turned)?(idx+1):(book.children.length-idx);}},1000);
+    var finish=function(e){
+      if(e&&e.target!==el) return;
+      clearTimeout(tmo);
+      el.removeEventListener("transitionend",finish);
+      el.classList.remove("mb-flipping");
+      busy=false;
+      applyState();
+    };
+    var tmo=setTimeout(finish,1100);
+    el.addEventListener("transitionend",finish);
   }
   function jumpTo(face){
+    busy=false;
+    var fl=book.querySelector(".mb-flipping");if(fl)fl.classList.remove("mb-flipping");
     activeFace=face;
+    turned=spread?Math.max(0,Math.min(L,Math.ceil(face/2))):Math.max(0,Math.min(FACES.length-1,face));
     book.classList.add("mb-noanim");
-    turned=spread?Math.max(0,Math.min(L,Math.ceil(face/2))):face;
     applyState();
     void book.offsetWidth;
     book.classList.remove("mb-noanim");
   }
+
+  // swipe to turn pages on touch
+  var tsx=0,tsy=0,tst=0;
+  book.addEventListener("touchstart",function(e){var t=e.changedTouches[0];tsx=t.clientX;tsy=t.clientY;tst=Date.now();swiped=false;},{passive:true});
+  book.addEventListener("touchend",function(e){
+    var t=e.changedTouches[0],dx=t.clientX-tsx,dy=t.clientY-tsy;
+    if(Date.now()-tst<600&&Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.5){swiped=true;go(dx<0?1:-1);}
+  },{passive:true});
 
   function open(target){
     var face=(target&&idFace[target]!==undefined)?idFace[target]:0;
@@ -676,7 +740,6 @@ body.mb-lock{overflow:hidden}
   btnPrev.addEventListener("click",function(){go(-1);});
   btnNext.addEventListener("click",function(){go(1);});
   btnClose.addEventListener("click",close);
-  overlay.addEventListener("click",function(e){if(e.target===overlay)close();});
   document.addEventListener("keydown",function(e){
     if(!overlay.classList.contains("open"))return;
     if(e.key==="Escape")close();
@@ -686,13 +749,26 @@ body.mb-lock{overflow:hidden}
   var rt;
   window.addEventListener("resize",function(){
     if(!overlay.classList.contains("open"))return;
-    if(isSpread()===spread)return;
-    clearTimeout(rt);rt=setTimeout(buildBook,150);
+    clearTimeout(rt);rt=setTimeout(function(){
+      if(isSpread()!==spread){buildBook();}
+      else{sizeBook();fitPages();}
+    },160);
   });
   var links=document.querySelectorAll(".js-menu");
   for(var i=0;i<links.length;i++){
     links[i].addEventListener("click",function(e){e.preventDefault();open(this.getAttribute("data-menu"));});
   }
+
+  // hamburger nav (mobile)
+  var mbtn=document.querySelector(".mnav-btn"),mnav=document.getElementById("mnav");
+  function mnavClose(){mnav.classList.remove("open");mbtn.classList.remove("open");mbtn.setAttribute("aria-expanded","false");}
+  mbtn.addEventListener("click",function(){
+    var o=mnav.classList.toggle("open");
+    mbtn.classList.toggle("open",o);
+    mbtn.setAttribute("aria-expanded",o?"true":"false");
+  });
+  var mls=mnav.querySelectorAll("a");
+  for(var j=0;j<mls.length;j++){mls[j].addEventListener("click",mnavClose);}
 })();
 </script>
 </body>
