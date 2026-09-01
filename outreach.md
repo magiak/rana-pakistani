@@ -4,7 +4,9 @@
 - Kanál: email
 - Kontakt: rezervace@ranapakistani.cz (ověřeno — publikováno na ranapakistani.cz i /contact/)
 - Telefon (follow-up): +420 721 809 084
-- Status: připraveno
+- Status: připraveno k odeslání (posílá Lukáš ze své osobní adresy — NE z designeo.cz)
+- Preflight 2026-09-02: live náhled ověřen (mobilní hamburger nav nasazena, „Since 2003" odstraněno)
+- Telefon záměrně v e-mailu neuveden — kontakt jen e-mailem, číslo nabídnuto až v odpovědi
 
 > Poznámka: jejich současný web je primárně anglicky — majitel bude nejspíš preferovat angličtinu. Proto EN verze první, česká pod ní.
 
@@ -30,11 +32,10 @@ Pricing:
 - 199 CZK/month for hosting, domain and technical support (billed yearly — 2,388 CZK/year)
 - 1,500 CZK one-time for the website, including deployment to your domain ranapakistani.cz
 
-If you're interested, just reply to this e-mail or call me at [TELEFON] — a quick 10-minute call is all we need.
+If you're interested, just reply to this e-mail — and if it's easier to talk it through, send me a number and I'll gladly call you. A quick 10-minute call is all we need.
 
 Thank you for your time — and I wish you many happy guests,
 Lukáš
-[TELEFON]
 
 ---
 
@@ -56,11 +57,10 @@ Cena:
 - 199 Kč/měsíc za hosting, doménu a technickou podporu (platba ročně — 2 388 Kč/rok)
 - 1 500 Kč jednorázově za vytvoření webu včetně nasazení na Vaši doménu ranapakistani.cz
 
-V případě zájmu stačí odpovědět na tento e-mail nebo mi zavolat na [TELEFON] — na úvod stačí krátký 10minutový hovor.
+V případě zájmu stačí odpovědět na tento e-mail — a pokud by Vám bylo milejší si zavolat, napište mi číslo a rád Vám zavolám. Na úvod stačí krátký 10minutový hovor.
 
 Děkuji za Váš čas a přeji hodně spokojených hostů,
 Lukáš
-[TELEFON]
 
 ---
 
