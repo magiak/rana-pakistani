@@ -1,23 +1,39 @@
 # Outreach — RANA Pakistani Restaurant
 
-- Odesláno: —
+- Odesláno: **2026-09-02 dopoledne** (v okně út–čt 9:30–11:00, jak má být)
 - Kanál: email
 - Kontakt: rezervace@ranapakistani.cz (ověřeno, publikováno na ranapakistani.cz i /contact/)
 - Telefon restaurace (pro follow-up): +420 721 809 084
-- Status: připraveno k odeslání. Posílá Lukáš ze své osobní adresy, NE z designeo.cz.
+- Status: **odesláno**, čeká se na odpověď. Posláno z osobní adresy Lukáše, NE z designeo.cz.
 - Preflight 2026-09-02: live náhled ověřen (mobilní hamburger nav nasazena, „Since 2003" odstraněno)
 - Telefon záměrně v e-mailu neuveden. Kontakt jen e-mailem, číslo nabídnuto až v odpovědi.
-- Bez příloh. Jen odkaz, viz follow-up plán níže.
+- Bez příloh, ale **s vloženou koláží mobilních screenshotů** v těle, viz níže.
 
-> **Jazyk: posílá se ČESKY** (rozhodnuto 2026-09-02). Jejich web je sice primárně
+> **Jazyk: tělo odešlo ČESKY** (rozhodnuto 2026-09-02), předmět nakonec dvojjazyčně. Jejich web je sice primárně
 > anglicky, ale kontaktní adresa je `rezervace@` a chceme, aby odpovídali česky.
 > EN verze zůstává na konci dokumentu jako záloha, kdyby majitel odpověděl anglicky.
 
+> **Co reálně odešlo (2026-09-02).** Finální verze se od textu níže liší ve dvou věcech,
+> obojí byla Lukášova volba a obojí se osvědčilo:
+>
+> 1. **Předmět dvojjazyčně, čeština první:**
+>    `Nový web pro RANA - ukázka zdarma | A new website for RANA - free preview`
+>    Česká část je vpředu, takže na mobilu se odsekne teprve ta anglická.
+> 2. **Pod podpisem koláž tří mobilních screenshotů** webu: hero s hamburger ikonou,
+>    otevřené polední menu v překlápěcím režimu s pagerem, a mapa s patičkou.
+>    Vložené inline, ne jako příloha. Důvod: cold příjemce si sám text nečte a neproklikává se,
+>    ale obrázek zaujme a zvedne šanci na klik. Zároveň ukazuje právě ten mobil,
+>    o kterém celý e-mail mluví.
+>
+> Pro další podniky dělat stejně. Přílohy (PDF, soubory) pořád ne, ty zvedají spam skóre.
+> Vložené obrázky ano.
+
 ---
 
-## E-mail k odeslání
+## Odeslané tělo e-mailu
 
-Předmět: Ukázka nového webu pro RANA (pro majitele)
+Předmět reálně použitý: viz poznámka „Co reálně odešlo" výše.
+(Původně nachystaný český předmět byl `Ukázka nového webu pro RANA (pro majitele)`.)
 
 Dobrý den,
 
@@ -49,7 +65,7 @@ Lukáš
 - Poslat út–čt dopoledne (9:30–11:00), před obědovou špičkou
 - Bez odpovědi do 3–4 dnů: osobní návštěva na oběd (14:00–17:00, pozor: pondělí zavírají v 16:00), nebo telefon +420 721 809 084 (číslo restaurace, ne moje)
 - Alternativa: jeden krátký follow-up e-mail po týdnu („jen se ptám, jestli se e-mail dostal k majiteli, odkaz na ukázku: …"). Víc než jednou ne.
-- Nic nepřikládat (PDF, screenshoty), jen odkaz. Přílohy z neznámé adresy padají do spamu a screenshot dává důvod na odkaz neklikat.
+- Žádné **přílohy** (PDF, soubory), ty z neznámé adresy zvedají spam skóre. **Vložené inline obrázky ano**, koláž mobilních screenshotů se osvědčila. Odkaz zůstává hlavní CTA v textu, aby e-mail fungoval i když klient obrázky blokuje.
 - Záložní kanál: Facebook Messenger (stránka „Pákistánská Restaurace Rana")
 
 ---
